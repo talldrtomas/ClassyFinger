@@ -13,9 +13,11 @@
 		0EDD888621D7FADD00F07D24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EDD888421D7FADD00F07D24 /* Main.storyboard */; };
 		0EDD888821D7FADF00F07D24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EDD888721D7FADF00F07D24 /* Assets.xcassets */; };
 		0EDD888B21D7FADF00F07D24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EDD888921D7FADF00F07D24 /* LaunchScreen.storyboard */; };
+		93F959771AAFCA3034EC8EAD /* Pods_ClassyFinger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63DFCD453A7D73385DDA341 /* Pods_ClassyFinger.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0102B44D0F630AEFAA92E7A3 /* Pods-ClassyFinger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassyFinger.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClassyFinger/Pods-ClassyFinger.release.xcconfig"; sourceTree = "<group>"; };
 		0EDD887B21D7FADD00F07D24 /* ClassyFinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassyFinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDD887E21D7FADD00F07D24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EDD888021D7FADD00F07D24 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		0EDD888721D7FADF00F07D24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EDD888A21D7FADF00F07D24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EDD888C21D7FADF00F07D24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61D4B6096508FCDBA4044219 /* Pods-ClassyFinger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassyFinger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClassyFinger/Pods-ClassyFinger.debug.xcconfig"; sourceTree = "<group>"; };
+		B63DFCD453A7D73385DDA341 /* Pods_ClassyFinger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClassyFinger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93F959771AAFCA3034EC8EAD /* Pods_ClassyFinger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				0EDD887D21D7FADD00F07D24 /* ClassyFinger */,
 				0EDD887C21D7FADD00F07D24 /* Products */,
+				7752DAC55703E198556F7DD5 /* Pods */,
+				D7A31DC0AAD4859D573C44A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +65,30 @@
 			children = (
 				0EDD887E21D7FADD00F07D24 /* AppDelegate.swift */,
 				0EDD888021D7FADD00F07D24 /* art.scnassets */,
-				0EDD888221D7FADD00F07D24 /* ViewController.swift */,
 				0EDD888421D7FADD00F07D24 /* Main.storyboard */,
 				0EDD888721D7FADF00F07D24 /* Assets.xcassets */,
 				0EDD888921D7FADF00F07D24 /* LaunchScreen.storyboard */,
 				0EDD888C21D7FADF00F07D24 /* Info.plist */,
+				0EDD888221D7FADD00F07D24 /* ViewController.swift */,
 			);
 			path = ClassyFinger;
+			sourceTree = "<group>";
+		};
+		7752DAC55703E198556F7DD5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				61D4B6096508FCDBA4044219 /* Pods-ClassyFinger.debug.xcconfig */,
+				0102B44D0F630AEFAA92E7A3 /* Pods-ClassyFinger.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D7A31DC0AAD4859D573C44A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B63DFCD453A7D73385DDA341 /* Pods_ClassyFinger.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0EDD888F21D7FADF00F07D24 /* Build configuration list for PBXNativeTarget "ClassyFinger" */;
 			buildPhases = (
+				11B907F5F0945FA45E908B9F /* [CP] Check Pods Manifest.lock */,
 				0EDD887721D7FADD00F07D24 /* Sources */,
 				0EDD887821D7FADD00F07D24 /* Frameworks */,
 				0EDD887921D7FADD00F07D24 /* Resources */,
+				6613396197881CC541505ECA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,6 +159,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		11B907F5F0945FA45E908B9F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClassyFinger-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6613396197881CC541505ECA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ClassyFinger/Pods-ClassyFinger-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ARCL/ARCL.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ARCL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ClassyFinger/Pods-ClassyFinger-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0EDD887721D7FADD00F07D24 /* Sources */ = {
@@ -284,6 +349,7 @@
 		};
 		0EDD889021D7FADF00F07D24 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61D4B6096508FCDBA4044219 /* Pods-ClassyFinger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +368,7 @@
 		};
 		0EDD889121D7FADF00F07D24 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0102B44D0F630AEFAA92E7A3 /* Pods-ClassyFinger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
