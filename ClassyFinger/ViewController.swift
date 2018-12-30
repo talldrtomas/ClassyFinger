@@ -42,7 +42,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchImageUsingButton()
-        //sceneViewLocation.run(ArSession: .worldTracking)
         //sceneViewLocation.orientToTrueNorth = false
         
         // Set the view's delegate
@@ -68,6 +67,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //--------------------------------------------------------------------------//
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        sceneViewLocation.run(ArSession: .worldTracking)
+
         
     }
     //--------------------------------------------------------------------------//
@@ -98,9 +99,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func searchImageUsingButton(){
         if (Longpress != nil){
+            sceneViewLocation.pause()
             sceneViewLocation.run(ArSession: .image)
         }
         else{
+            sceneViewLocation.pause()
             sceneViewLocation.run(ArSession: .worldTracking)
         }
     }
