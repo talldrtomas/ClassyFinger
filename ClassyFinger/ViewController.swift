@@ -26,30 +26,32 @@ class Spots: NSObject {
         self.image  = image
         self.label = name
     }
-    
-    
-    
 }
+
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     var sceneViewLocation = SceneLocationView()
     var destinations = [Spots(laditude: 32.7636, longitude: -117.1216
         , altitude: 5.0, image: "mario", name: "Starbucks"), Spots(laditude: 32.7635, longitude: -117.1222, altitude: 5.0, image: "butterfly", name: "HairStudio"), Spots(laditude: 32.7635, longitude: -117.1220, altitude: 5.0, image: "heart", name: "BottleShop"),Spots(laditude: 32.7632, longitude: -117.1219, altitude: 1.5, image: "Homer", name: "Column")]
     
-    
+
+    @IBOutlet var Longpress: UILongPressGestureRecognizer!
     @IBOutlet var sceneView: ARSCNView!
-    
+    //--------------------------------------------------------------------------//
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        sceneViewLocation.run()
-        sceneViewLocation.orientToTrueNorth = false
+        searchImageUsingButton()
+        //sceneViewLocation.run(ArSession: .worldTracking)
+        //sceneViewLocation.orientToTrueNorth = false
         
         // Set the view's delegate
         for mylocations in destinations{
             newMarker(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image)
         }
         
-        //Markers will be added
+        //Reconize the Images
+        
         
         
         
@@ -94,6 +96,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
-    
+    func searchImageUsingButton(){
+        if (Longpress != nil){
+            sceneViewLocation.run(ArSession: .image)
+        }
+        else{
+            sceneViewLocation.run(ArSession: .worldTracking)
+        }
+    }
     
 }
