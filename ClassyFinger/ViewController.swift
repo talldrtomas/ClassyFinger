@@ -107,5 +107,5 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             sceneViewLocation.run(ArSession: .worldTracking)
         }
     }
-    
+
 }
