@@ -43,8 +43,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
         sceneViewLocation.orientToTrueNorth = false
         // Set the view's delegate
+        let configuration = ARWorldTrackingConfiguration()
+        guard let imagetoTrack = ARReferenceImage.referenceImages(inGroupNamed: "trackingImages", bundle: Bundle.main) else{
+            return print("No images in Folder")}
+        configuration.detectionImages = imagetoTrack
+        sceneView.session.run(configuration)
+        print("Image was found")
+        
         for mylocations in destinations{
             newMarker(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image)
+            
         }
         
         //Reconize the Images
@@ -62,6 +70,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         sceneViewLocation.run()
+        print("Scene Location running")
 
 
         
@@ -81,7 +90,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let coordinate = CLLocationCoordinate2D(latitude: laditude, longitude: longitude)
         
         
-        let location = CLLocation(coordinate: coordinate, altitude: altitude + 52.00)
+        let location = CLLocation(coordinate: coordinate, altitude: altitude + 65.00)
         guard let image = UIImage(named: image)else {
             return print("Did not find image") }
         
