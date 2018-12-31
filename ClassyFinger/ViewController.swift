@@ -32,27 +32,22 @@ class Spots: NSObject {
 class ViewController: UIViewController, ARSCNViewDelegate {
     var sceneViewLocation = SceneLocationView()
     var destinations = [Spots(laditude: 32.7636, longitude: -117.1216
-        , altitude: 5.0, image: "mario", name: "Starbucks"), Spots(laditude: 32.7635, longitude: -117.1222, altitude: 5.0, image: "butterfly", name: "HairStudio"), Spots(laditude: 32.7635, longitude: -117.1220, altitude: 5.0, image: "heart", name: "BottleShop"),Spots(laditude: 32.7632, longitude: -117.1219, altitude: 1.5, image: "Homer", name: "Column")]
+        , altitude: 5.0, image: "mario", name: "Starbucks"), Spots(laditude: 32.7635, longitude: -117.1222, altitude: 5.0, image: "butterfly", name: "HairStudio"), Spots(laditude: 32.7635, longitude: -117.1220, altitude: 5.0, image: "heart", name: "BottleShop"),Spots(laditude: 32.7632, longitude: -117.1219, altitude: 1.5, image: "Homer", name: "Column"), Spots(laditude: 32.7175, longitude: -117.1408, altitude: 1.5, image: "Homer", name: "Krakatoa")]
     
 
     @IBOutlet var Longpress: UILongPressGestureRecognizer!
     @IBOutlet var sceneView: ARSCNView!
     //--------------------------------------------------------------------------//
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //sceneViewLocation.orientToTrueNorth = false
-        
+        sceneViewLocation.orientToTrueNorth = false
         // Set the view's delegate
         for mylocations in destinations{
             newMarker(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image)
         }
         
         //Reconize the Images
-        
-        
-        
-        
     }
     //--------------------------------------------------------------------------//
     
@@ -66,8 +61,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //--------------------------------------------------------------------------//
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        sceneViewLocation.run(ArSession: .worldTracking)
-        searchImageUsingButton()
+        sceneViewLocation.run()
+
 
         
     }
@@ -86,7 +81,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let coordinate = CLLocationCoordinate2D(latitude: laditude, longitude: longitude)
         
         
-        let location = CLLocation(coordinate: coordinate, altitude: altitude + 121.31 - 2)
+        let location = CLLocation(coordinate: coordinate, altitude: altitude + 52.00)
         guard let image = UIImage(named: image)else {
             return print("Did not find image") }
         
@@ -94,18 +89,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: annotationNode)
         annotationNode.scaleRelativeToDistance = true
         sceneView.addSubview(sceneViewLocation)
-        
-    }
-    
-    func searchImageUsingButton(){
-        if (Longpress != nil){
-            sceneViewLocation.pause()
-            sceneViewLocation.run(ArSession: .image)
-        }
-        else{
-            sceneViewLocation.pause()
-            sceneViewLocation.run(ArSession: .worldTracking)
-        }
     }
 
 }

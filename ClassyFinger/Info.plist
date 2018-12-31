@@ -23,7 +23,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Can I use your camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Can we know where you are? </string>
+	<string>Can we get data off of Your Location</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
