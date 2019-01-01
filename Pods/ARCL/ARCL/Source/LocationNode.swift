@@ -70,6 +70,7 @@ open class LocationAnnotationNode: LocationNode {
     ///Scaling relative to distance may be useful with local navigation-based uses
     ///For landmarks in the distance, the default is correct
     public var scaleRelativeToDistance = false
+    public let node = SCNNode()
 
     public init(location: CLLocation?, image: UIImage) {
         self.image = image
@@ -89,6 +90,9 @@ open class LocationAnnotationNode: LocationNode {
 
         addChildNode(annotationNode)
     }
+    
+    
+    
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

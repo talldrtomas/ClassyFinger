@@ -4,9 +4,8 @@
 //
 //  Created by Tomas Galvan-Huerta on 11/14/18.
 //  Copyright © 2018 Somat. All rights reserved.
-// Render: Create node for specific location(laditude and Longgitude)
-// Create Museum points
-// Create big pins for the Museums
+// Create Museum points (sammy)
+// Create big pins for the Museums 
 // Create roads for the entrences of museums
 // Make several Current Location nodes for the museums
 
@@ -17,21 +16,7 @@ import ARKit
 import ARCL
 import CoreLocation
 
-class Spots: NSObject {
-    let laditude: Double
-    let longitude:Double
-    let altitude: Double
-    let image: String
-    let label: String
-    
-    init(laditude: Double, longitude: Double, altitude: Double, image: String, name: String) {
-        self.laditude = laditude
-        self.longitude = longitude
-        self.altitude = altitude
-        self.image  = image
-        self.label = name
-    }
-}
+
 
 
 class ViewController: UIViewController, ARSCNViewDelegate {
@@ -49,7 +34,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneViewLocation.run()
         sceneViewLocation.orientToTrueNorth = false
         for mylocations in destination.destinations{
-            newMarker(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image)
+            addPicture(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image)
         }
         
     }
@@ -80,7 +65,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //--------------------------------------------------------------------------//
     //Create function to make things easier
     
-    func newMarker(laditude: Double, longitude: Double, altitude: Double, image: String){
+    func addPicture(laditude: Double, longitude: Double, altitude: Double, image: String){
         let coordinate = CLLocationCoordinate2D(latitude: laditude, longitude: longitude)
         
         
@@ -88,10 +73,23 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         guard let image = UIImage(named: image)else {
             return print("Did not find image") }
         
+        
         let annotationNode = LocationAnnotationNode(location: location, image: image)
         sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: annotationNode)
         annotationNode.scaleRelativeToDistance = true
         sceneView.addSubview(sceneViewLocation)
+    }
+    
+    func addNode(laditude: Double, longitude: Double, altitude: Double){
+        let coordinate = CLLocationCoordinate2D(latitude: laditude, longitude: longitude)
+        let location = CLLocation(coordinate: coordinate, altitude: altitude + 65.00)
+        let node = LocationNode(location: location)
+        node.geometry = SCNBox(width: 23, height: 4, length: 2, chamferRadius: 4)
+        sceneView.scene.rootNode.addChildNode(node)
+        
+        
+
+        
     }
   
 }
