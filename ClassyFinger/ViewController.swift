@@ -36,6 +36,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         for mylocations in destination.destinations{
             addPicture(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image)
         }
+        for objetcs in 
         
     }
     
@@ -80,15 +81,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.addSubview(sceneViewLocation)
     }
     
-    func addNode(laditude: Double, longitude: Double, altitude: Double){
+    func addobject(node: SCNNode, laditude: Double, longitude: Double, altitude: Double){
         let coordinate = CLLocationCoordinate2D(latitude: laditude, longitude: longitude)
         let location = CLLocation(coordinate: coordinate, altitude: altitude + 65.00)
         let node = LocationNode(location: location)
-        node.geometry = SCNBox(width: 23, height: 4, length: 2, chamferRadius: 4)
+        node.geometry = node.geometry
         sceneView.scene.rootNode.addChildNode(node)
-        
-        
-
         
     }
   
