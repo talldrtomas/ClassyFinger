@@ -4,7 +4,12 @@
 //
 //  Created by Tomas Galvan-Huerta on 11/14/18.
 //  Copyright © 2018 Somat. All rights reserved.
-//
+// Render: Create node for specific location(laditude and Longgitude)
+// Create Museum points
+// Create big pins for the Museums
+// Create roads for the entrences of museums
+// Make several Current Location nodes for the museums
+
 
 import UIKit
 import SceneKit
@@ -31,8 +36,8 @@ class Spots: NSObject {
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     var sceneViewLocation = SceneLocationView()
-    var destinations = [Spots(laditude: 32.7636, longitude: -117.1216
-        , altitude: 5.0, image: "mario", name: "Starbucks"), Spots(laditude: 32.7635, longitude: -117.1222, altitude: 5.0, image: "butterfly", name: "HairStudio"), Spots(laditude: 32.7635, longitude: -117.1220, altitude: 5.0, image: "heart", name: "BottleShop"),Spots(laditude: 32.7632, longitude: -117.1219, altitude: 1.5, image: "Homer", name: "Column"), Spots(laditude: 32.7175, longitude: -117.1408, altitude: 1.5, image: "Homer", name: "Krakatoa")]
+    let destination = Locations()
+    
     
 
     @IBOutlet var Longpress: UILongPressGestureRecognizer!
@@ -41,23 +46,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sceneViewLocation.run()
         sceneViewLocation.orientToTrueNorth = false
-        // Set the view's delegate
-        let configuration = ARWorldTrackingConfiguration()
-        guard let imagetoTrack = ARReferenceImage.referenceImages(inGroupNamed: "trackingImages", bundle: Bundle.main) else{
-            return print("No images in Folder")}
-        configuration.detectionImages = imagetoTrack
-        sceneView.session.run(configuration)
-        print("Image was found")
-        
-        for mylocations in destinations{
+        for mylocations in destination.destinations{
             newMarker(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image)
-            
         }
         
-        //Reconize the Images
     }
-    //--------------------------------------------------------------------------//
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -69,8 +65,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //--------------------------------------------------------------------------//
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        sceneViewLocation.run()
-        print("Scene Location running")
 
 
         
@@ -99,5 +93,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         annotationNode.scaleRelativeToDistance = true
         sceneView.addSubview(sceneViewLocation)
     }
-
+  
 }
+
+/*guard let imagetoTrack = ARReferenceImage.referenceImages(inGroupNamed: "trackingImages", bundle: Bundle.main) else {
+    return print("Images not found")
+}
+configuration.detectionImages = imagetoTrack
+configuration.maximumNumberOfTrackedImages = 2
+sceneView.session.run(configuration)
+print("Image was found")
+
+
+
+
+ 
+ func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+ let CurrentLocation = SCNNode()
+ if let imageAnchor = anchor as? ARImageAnchor{
+ let plance = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
+ let planeNode = SCNNode(geometry: plance)
+ CurrentLocation.addChildNode(planeNode)
+ }
+ 
+ return CurrentLocation
+ }
+ 
+ */
+
