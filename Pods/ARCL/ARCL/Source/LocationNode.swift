@@ -89,6 +89,7 @@ open class LocationAnnotationNode: LocationNode {
         constraints = [billboardConstraint]
 
         addChildNode(annotationNode)
+        
     }
     
     

@@ -54,7 +54,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     ///When set to true, displays an axes node at the start of the scene
     public var showAxesNode = false
 
-    private(set) var locationNodes = [LocationNode]()
+    public var locationNodes = [LocationNode]()
 
     private var sceneLocationEstimates = [SceneLocationEstimate]()
 
@@ -315,6 +315,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
 
         locationNode.removeFromParentNode()
     }
+    
 
     private func confirmLocationOfDistantLocationNodes() {
         guard let currentPosition = currentScenePosition() else {

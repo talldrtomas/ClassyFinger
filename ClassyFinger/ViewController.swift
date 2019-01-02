@@ -19,9 +19,12 @@ import CoreLocation
 
 
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     var sceneViewLocation = SceneLocationView()
-    let destination = Locations()
+    var destination = [Spots]()
+    let multiplelocations = Locations()
+    var searchSpots = [Spots]()
+    
     
     
 
@@ -32,7 +35,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneViewLocation.orientToTrueNorth = false
-        for mylocations in destination.destinations{
+        destination.append(contentsOf: multiplelocations.destinations)
+        for mylocations in destination{
             addPicture(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image)
         }
         guard let myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn") else {
@@ -73,8 +77,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let location = CLLocation(coordinate: coordinate, altitude: altitude + 65.00)
         guard let image = UIImage(named: image)else {
             return print("Did not find image") }
-        
-        
+
         let annotationNode = LocationAnnotationNode(location: location, image: image)
         sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: annotationNode)
         annotationNode.scaleRelativeToDistance = true
@@ -93,9 +96,37 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func alterLayout() {
         navigationItem.titleView = searchBar
-        searchBar.showsScopeBar = false // you can show/hide this dependant on your layout
+        searchBar.showsScopeBar = true // you can show/hide this dependant on your layout
+        searchBar.sizeToFit()
         //searchBar.placeholder = "Search Animal by Name"
     }
-  
+   func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    for indexNodes in sceneViewLocation.locationNodes {
+        sceneViewLocation.removeLocationNode(locationNode: indexNodes)
+    
+    }
+    
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchSpots = destination.filter({ (spots) -> Bool in
+            switch searchBar.selectedScopeButtonIndex{
+            case 0:
+                if searchText.isEmpty{return true}
+                return spots.label.lowercased().contains(searchText.lowercased())
+            default:
+                return false
+                
+            }
+            
+        })
+    }
+    
+    
+    
 }
 

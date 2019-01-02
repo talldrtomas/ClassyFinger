@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ClassyFinger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ClassyFinger" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U0K-SW-4ec">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -23,7 +23,8 @@
                                 <gestureRecognizers/>
                             </arscnView>
                             <searchBar contentMode="redraw" placeholder="What class?" translatesAutoresizingMaskIntoConstraints="NO" id="EcL-m1-Wdb">
-                                <rect key="frame" x="105" y="611" width="270" height="56"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="55"/>
+                                <color key="barTintColor" red="0.40818457161714583" green="0.14009934519891296" blue="0.0577362252859469" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="BV1-FR-VrT" id="9cf-FC-cT6"/>
@@ -32,13 +33,13 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="EcL-m1-Wdb" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="591" id="DI4-zv-dSc"/>
+                            <constraint firstItem="EcL-m1-Wdb" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="AUk-Zc-OkW"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="EcL-m1-Wdb" secondAttribute="bottom" constant="582" id="CAK-Ii-Akr"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
-                            <constraint firstItem="EcL-m1-Wdb" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="105" id="TP2-DA-7KH"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
-                            <constraint firstItem="EcL-m1-Wdb" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="X6V-CM-e5K"/>
+                            <constraint firstItem="EcL-m1-Wdb" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="10" id="Wpu-g9-Hjt"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
-                            <constraint firstItem="EcL-m1-Wdb" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="arM-HV-XzS"/>
+                            <constraint firstItem="EcL-m1-Wdb" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="bU0-10-Ugh"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
