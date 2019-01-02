@@ -12,31 +12,31 @@ class Spots: NSObject, ARSCNViewDelegate {
     let laditude: Double
     let longitude:Double
     let altitude: Double
-    let image: String
+    let image: String?
+    let node: SCNNode?
     let label: String
     
     
-    init(laditude: Double, longitude: Double, altitude: Double, image: String, name: String) {
+    init(laditude: Double, longitude: Double, altitude: Double, image: String?, name: String) {
         self.laditude = laditude
         self.longitude = longitude
         self.altitude = altitude
         self.image  = image
         self.label = name
-    }}
-class ARobject: NSObject{
-    let laditude: Double
-    let longitude:Double
-    let altitude: Double
-    let label: String
-    let node: SCNNode
-    
-    init(laditude: Double, longitude: Double, mynode: SCNNode, altitude: Double, name: String) {
+        self.node = nil
+    }
+    init(laditude: Double, longitude: Double, altitude: Double, mynode: SCNNode?, name: String) {
         self.laditude = laditude
         self.longitude = longitude
         self.altitude = altitude
+        self.node  = mynode
         self.label = name
-        self.node = mynode
-        }}
+        self.image = nil
+    
+}
+    
+    }
+
 
 class Locations: NSObject{
     /*

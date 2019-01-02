@@ -37,14 +37,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
         sceneViewLocation.orientToTrueNorth = false
         destination.append(contentsOf: multiplelocations.destinations)
         for mylocations in destination{
-            addPicture(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image)
+           // if mylocations.image != nil{
+                addPicture(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image!)
+//            }
+  //          if mylocations.node != nil{
+                guard let myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn") else {
+                    return print("No scene Found")}
+                guard let mynodeo = myscene.rootNode.childNode(withName: "cone", recursively: true) else {
+                    return print("No Pin found")}
+                addobject(mynode: mynodeo, laditude: 32.6990, longitude: -117.1160, altitude: 4)
+            
+           // }
         }
-        guard let myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn") else {
-            return print("No scene Found")}
-        guard let mynode = myscene.rootNode.childNode(withName: "cone", recursively: true) else {
-            return print("No Pin found")
-        }
-        addobject(mynode: mynode, laditude: 32.6990, longitude: -117.1160, altitude: 4)
         sceneView.addSubview(sceneViewLocation)
     }
     
@@ -72,25 +76,25 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
 
     //MARK: Create function to make things easier
     
-    func addPicture(laditude: Double, longitude: Double, altitude: Double, image: String){
+    func addpicobject(laditude: Double, longitude: Double, altitude: Double, image: String?, tnode: SCNNode?){
         let coordinate = CLLocationCoordinate2D(latitude: laditude, longitude: longitude)
         let location = CLLocation(coordinate: coordinate, altitude: altitude + 65.00)
-        guard let image = UIImage(named: image)else {
-            return print("Did not find image") }
-
-        let annotationNode = LocationAnnotationNode(location: location, image: image)
-        sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: annotationNode)
-        annotationNode.scaleRelativeToDistance = true
+        if image != nil{
+            let imagename = image!
+            guard let image = UIImage(named: imagename)else {
+                return print("Did not find image") }
+            let annotationNode = LocationAnnotationNode(location: location, image: image)
+            sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: annotationNode)
+            annotationNode.scaleRelativeToDistance = true
+        }
+        if tnode != nil{
+            let node = LocationNode(location: location)
+            node.geometry = tnode!.geometry
+            sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: node)
+        }
         
     }
-    
-    func addobject(mynode: SCNNode, laditude: Double, longitude: Double, altitude: Double){
-        let coordinate = CLLocationCoordinate2D(latitude: laditude, longitude: longitude)
-        let location = CLLocation(coordinate: coordinate, altitude: altitude + 15.24)
-        let node = LocationNode(location: location)
-        node.geometry = mynode.geometry
-        sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: node)
-    }
+
     
     //MARK: SearchBar
     
@@ -110,6 +114,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -117,7 +122,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
             switch searchBar.selectedScopeButtonIndex{
             case 0:
                 if searchText.isEmpty{return true}
+                let identifier = searchSpots[searchBar.selectedScopeButtonIndex]
+                
+                addobject(mynode: identifier.node!, laditude: identifier.laditude, longitude: identifier.longitude, altitude: identifier.altitude)
+
+                
                 return spots.label.lowercased().contains(searchText.lowercased())
+                
             default:
                 return false
                 
