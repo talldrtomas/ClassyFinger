@@ -279,7 +279,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     ///location will not be modified, but taken as accurate.
     public func addLocationNodeWithConfirmedLocation(locationNode: LocationNode) {
         if locationNode.location == nil || locationNode.locationConfirmed == false {
-            return
+            return print("No node found")
         }
 
         updatePositionAndScaleOfLocationNode(locationNode: locationNode, initialSetup: true, animated: false)
