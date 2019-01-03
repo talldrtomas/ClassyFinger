@@ -58,7 +58,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
 
     private var sceneLocationEstimates = [SceneLocationEstimate]()
 
-    public private(set) var sceneNode: SCNNode? {
+    public var sceneNode: SCNNode? {
         didSet {
             if sceneNode != nil {
                 for locationNode in locationNodes {
@@ -277,12 +277,15 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     ///location not being nil, and locationConfirmed being true are required
     ///Upon being added, a node's position will be modified and should not be changed externally.
     ///location will not be modified, but taken as accurate.
+    //MARK: Change to accept material and actions
+    //This is the mark to add all other properties too
     public func addLocationNodeWithConfirmedLocation(locationNode: LocationNode) {
         if locationNode.location == nil || locationNode.locationConfirmed == false {
             return print("No node found")
         }
 
         updatePositionAndScaleOfLocationNode(locationNode: locationNode, initialSetup: true, animated: false)
+
 
         locationNodes.append(locationNode)
         sceneNode?.addChildNode(locationNode)

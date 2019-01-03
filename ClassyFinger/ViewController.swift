@@ -43,6 +43,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
                 addpicobject(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image, tnode: mylocations.node, elevation: mylocations.elevation)
 
         }
+        
         sceneView.addSubview(sceneViewLocation)
     }
     
@@ -140,15 +141,20 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     func trianglenode(){
         let myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn")
         let mynodeo = myscene!.rootNode.childNode(withName: "cone", recursively: true)
-        let rotate = SCNAction()
-        
-        mynodeo?.runAction(rotate)
+        let rotateOne = SCNAction.rotateBy(x: 0, y: CGFloat(Float.pi), z: 0, duration: 5.0)
+        mynodeo!.runAction(rotateOne)
         let triangle = Spots(laditude: 32.6990, longitude: -117.1160, altitude: 4, mynode: mynodeo, name: "home", elevation: 15)
         destination.append(triangle)
-        
-       
     }
     
     
 }
+
+/*let rotateOne = SCNAction.rotateBy(x: 0, y: CGFloat(Float.pi), z: 0, duration: 5.0)
+ let hoverUp = SCNAction.moveBy(x: 0, y: 0.2, z: 0, duration: 2.5)
+ let hoverDown = SCNAction.moveBy(x: 0, y: -0.2, z: 0, duration: 2.5)
+ let hoverSequence = SCNAction.sequence([hoverUp, hoverDown])
+ let rotateAndHover = SCNAction.group([rotateOne, hoverSequence])
+ let repeatForever = SCNAction.repeatForever(rotateAndHover)
+ mynodeo!.runAction(repeatForever)*/
 
