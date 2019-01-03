@@ -5,7 +5,7 @@
 //  Created by Tomas Galvan-Huerta on 11/14/18.
 //  Copyright © 2018 Somat. All rights reserved.
 // Create Museum points (sammy)
-// Create big pins for the Museums 
+// Place 
 // Create roads for the entrences of museums
 // Make several Current Location nodes for the museums
 
@@ -35,19 +35,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneViewLocation.orientToTrueNorth = false
+        trianglenode()
         destination.append(contentsOf: multiplelocations.destinations)
+        
         for mylocations in destination{
            // if mylocations.image != nil{
-                addPicture(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image!)
-//            }
-  //          if mylocations.node != nil{
-                guard let myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn") else {
-                    return print("No scene Found")}
-                guard let mynodeo = myscene.rootNode.childNode(withName: "cone", recursively: true) else {
-                    return print("No Pin found")}
-                addobject(mynode: mynodeo, laditude: 32.6990, longitude: -117.1160, altitude: 4)
-            
-           // }
+                addpicobject(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image, tnode: mylocations.node, elevation: mylocations.elevation)
+
         }
         sceneView.addSubview(sceneViewLocation)
     }
@@ -76,9 +70,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
 
     //MARK: Create function to make things easier
     
-    func addpicobject(laditude: Double, longitude: Double, altitude: Double, image: String?, tnode: SCNNode?){
+    func addpicobject(laditude: Double, longitude: Double, altitude: Double, image: String?, tnode: SCNNode?, elevation: Double){
         let coordinate = CLLocationCoordinate2D(latitude: laditude, longitude: longitude)
-        let location = CLLocation(coordinate: coordinate, altitude: altitude + 65.00)
+        let location = CLLocation(coordinate: coordinate, altitude: altitude + elevation)
         if image != nil{
             let imagename = image!
             guard let image = UIImage(named: imagename)else {
@@ -91,6 +85,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
             let node = LocationNode(location: location)
             node.geometry = tnode!.geometry
             sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: node)
+
         }
         
     }
@@ -113,20 +108,23 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        
-        
+        if let mytextspots = destination.first(where: {$0.label.lowercased() == searchBar.text!.lowercased()}) {
+            // it exists, do something
+            addpicobject(laditude: mytextspots.laditude, longitude: mytextspots.longitude, altitude: mytextspots.altitude, image: mytextspots.image, tnode: mytextspots.node, elevation: mytextspots.elevation)
+        } else {
+            print("no Picture was found")
+        }
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+   /* func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchSpots = destination.filter({ (spots) -> Bool in
             switch searchBar.selectedScopeButtonIndex{
             case 0:
                 if searchText.isEmpty{return true}
                 let identifier = searchSpots[searchBar.selectedScopeButtonIndex]
                 
-                addobject(mynode: identifier.node!, laditude: identifier.laditude, longitude: identifier.longitude, altitude: identifier.altitude)
+                addpicobject(laditude: identifier.laditude, longitude: identifier.longitude, altitude: identifier.altitude, image: identifier.image, tnode: identifier.node, elevation: identifier.elevation)
 
-                
                 return spots.label.lowercased().contains(searchText.lowercased())
                 
             default:
@@ -135,8 +133,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
             }
             
         })
-    }
+    }*/
+    //MARK: Add all the nodes and make them move
+    //make the Parent node the
     
+    func trianglenode(){
+        let myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn")
+        let mynodeo = myscene!.rootNode.childNode(withName: "cone", recursively: true)
+        let rotate = SCNAction()
+        
+        mynodeo?.runAction(rotate)
+        let triangle = Spots(laditude: 32.6990, longitude: -117.1160, altitude: 4, mynode: mynodeo, name: "home", elevation: 15)
+        destination.append(triangle)
+        
+       
+    }
     
     
 }
