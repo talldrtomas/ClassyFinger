@@ -58,7 +58,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
 
     private var sceneLocationEstimates = [SceneLocationEstimate]()
 
-    public private(set) var sceneNode: SCNNode? {
+    public var sceneNode: SCNNode? {
         didSet {
             if sceneNode != nil {
                 for locationNode in locationNodes {
@@ -118,23 +118,21 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     override public func layoutSubviews() {
         super.layoutSubviews()
     }
-
+    
     public func run() {
         // Create a session configuration
+        session.pause()
         print("Function is about to run")
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
-        if orientToTrueNorth {
-            configuration.worldAlignment = .gravityAndHeading
-        } else {
-            configuration.worldAlignment = .gravity
-        }
+        configuration.worldAlignment = .gravityAndHeading
         
         // Run the view's session
-        session.run(configuration)
+        session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
         
         updateEstimatesTimer?.invalidate()
         updateEstimatesTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(SceneLocationView.updateLocationData), userInfo: nil, repeats: true)
+        
     }
 
     public func pause() {
@@ -171,7 +169,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     }
 
     ///Resets the scene heading to 0
-    func resetSceneHeading() {
+    public func resetSceneHeading() {
         sceneNode?.eulerAngles.y = 0
     }
 
@@ -277,12 +275,14 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     ///location not being nil, and locationConfirmed being true are required
     ///Upon being added, a node's position will be modified and should not be changed externally.
     ///location will not be modified, but taken as accurate.
-    public func addLocationNodeWithConfirmedLocation(locationNode: LocationNode) {
+    public func addLocationNodeWithConfirmedLocation(locationNode: LocationNode, action: SCNAction?) {
         if locationNode.location == nil || locationNode.locationConfirmed == false {
             return print("No node found")
         }
 
         updatePositionAndScaleOfLocationNode(locationNode: locationNode, initialSetup: true, animated: false)
+        
+        if action != nil {locationNode.runAction(action!)}
 
         locationNodes.append(locationNode)
         sceneNode?.addChildNode(locationNode)

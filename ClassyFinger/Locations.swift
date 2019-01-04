@@ -7,6 +7,7 @@
 
 import Foundation
 import ARKit
+import CoreLocation
 
 class Spots: NSObject, ARSCNViewDelegate {
     let laditude: Double
@@ -16,6 +17,7 @@ class Spots: NSObject, ARSCNViewDelegate {
     let node: SCNNode?
     let label: String
     let elevation: Double
+    let cllocation: CLLocation
     
     
     init(laditude: Double, longitude: Double, altitude: Double, image: String?, name: String, elevation: Double) {
@@ -26,6 +28,7 @@ class Spots: NSObject, ARSCNViewDelegate {
         self.label = name
         self.elevation = elevation
         self.node = nil
+        self.cllocation = CLLocation(latitude: self.laditude, longitude: self.longitude)
     }
     init(laditude: Double, longitude: Double, altitude: Double, mynode: SCNNode?, name: String, elevation: Double) {
         self.laditude = laditude
@@ -35,6 +38,7 @@ class Spots: NSObject, ARSCNViewDelegate {
         self.label = name
         self.image = nil
         self.elevation = elevation
+        self.cllocation = CLLocation(latitude: self.laditude, longitude: self.longitude)
     
 }
     
@@ -51,10 +55,38 @@ class Locations: NSObject{
      Science Museum
  */
     
-    var destinations = [Spots(laditude: 32.7636, longitude: -117.1216
-        , altitude: 5.0, image: "mario", name: "Starbucks", elevation: 121), Spots(laditude: 32.7635, longitude: -117.1222, altitude: 5.0, image: "butterfly", name: "HairStudio", elevation: 121), Spots(laditude: 32.7635, longitude: -117.1220, altitude: 5.0, image: "heart", name: "BottleShop", elevation: 121),Spots(laditude: 32.7632, longitude: -117.1219, altitude: 1.5, image: "Homer", name: "Column", elevation: 121), Spots(laditude: 32.7175, longitude: -117.1408, altitude: 1.5, image: "Homer", name: "Krakatoa", elevation: 65.00), Spots(laditude: 32.7308, longitude: -117.1470, altitude: 30, image: "Homer", name: "Science Museum", elevation: 15)]
+    var destinations = [Spots]()
+    var pointsofIntrest = [Spots]()
+
+    func trianglenode(){
+//        let myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn")
+//       let spintop = myscene!.rootNode.childNode(withName: "cone", recursively: true)
+//        let longmarjer = myscene!.rootNode.childNode(withName: "capsule", recursively: true)
+        
+        
+    }
+    func addpointOfIntrest(){
+        let myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn")
+        let spintop = myscene!.rootNode.childNode(withName: "cone", recursively: true)
+        let longmarker = myscene!.rootNode.childNode(withName: "capsule", recursively: true)
+       let chicoState = Spots(laditude: 39.7297, longitude: -121.8447, altitude: 30, image: nil, name: "Chico State", elevation: 65)
+        pointsofIntrest.append(chicoState)
+        let SDMesacollege = Spots(laditude: 32.8038, longitude: -117.1690, altitude: 50, mynode: longmarker, name: "Mesa College", elevation: 104)
+        pointsofIntrest.append(SDMesacollege)
+        let triangle = Spots(laditude: 32.6990, longitude: -117.1160, altitude: 4, mynode: spintop, name: "home", elevation: 15)
+        pointsofIntrest.append(triangle)
+    }
     
-   // var test = [ARobject(laditude: 312.3, longitude: 32.3, node: SCNNODE, altitude: 21331, name: "homer")]
+    
+    func addchicoClasse(){
+        
+    }
+    
+    func addSDBalboaMuseums(){
+        
+    }
+    
+    
     
 }
 

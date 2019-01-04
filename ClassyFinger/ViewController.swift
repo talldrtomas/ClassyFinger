@@ -5,7 +5,6 @@
 //  Created by Tomas Galvan-Huerta on 11/14/18.
 //  Copyright © 2018 Somat. All rights reserved.
 // Create Museum points (sammy)
-// Place 
 // Create roads for the entrences of museums
 // Make several Current Location nodes for the museums
 
@@ -26,27 +25,40 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     var searchSpots = [Spots]()
     
     
+    @IBAction func rightTouchmove(_ sender: UITapGestureRecognizer) {
+        sceneViewLocation.moveSceneHeadingClockwise()
+    }
+    @IBAction func lefTouchMove(_ sender: UITapGestureRecognizer) {
+        sceneViewLocation.moveSceneHeadingAntiClockwise()
+        
+    }
     
-
+    
+    @IBAction func RestartNorth(_ sender: UIButton) {
+        removeallNode()
+        sceneViewLocation.run()
+        sceneViewLocation.resetSceneHeading()
+        selectednodestoPresent()
+    }
+    
+    @IBAction func ShowAllNodes(_ sender: UIButton) {
+        removeallNode()
+        selectednodestoPresent()
+        
+    }
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var sceneView: ARSCNView!
 
     //Mark: Loading ontoo phone
     override func viewDidLoad() {
         super.viewDidLoad()
-        sceneViewLocation.orientToTrueNorth = false
-        trianglenode()
+        multiplelocations.trianglenode()
         destination.append(contentsOf: multiplelocations.destinations)
-        
-        for mylocations in destination{
-           // if mylocations.image != nil{
-                addpicobject(laditude: mylocations.laditude, longitude: mylocations.longitude, altitude: mylocations.altitude, image: mylocations.image, tnode: mylocations.node, elevation: mylocations.elevation)
-
-        }
         sceneView.addSubview(sceneViewLocation)
+        selectednodestoPresent()
+    
     }
-    
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         sceneViewLocation.frame = view.bounds
@@ -70,21 +82,25 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
 
     //MARK: Create function to make things easier
     
-    func addpicobject(laditude: Double, longitude: Double, altitude: Double, image: String?, tnode: SCNNode?, elevation: Double){
-        let coordinate = CLLocationCoordinate2D(latitude: laditude, longitude: longitude)
-        let location = CLLocation(coordinate: coordinate, altitude: altitude + elevation)
-        if image != nil{
-            let imagename = image!
+    func addpicobject(spots: Spots){
+        let coordinate = CLLocationCoordinate2D(latitude: spots.laditude, longitude: spots.longitude)
+        let location = CLLocation(coordinate: coordinate, altitude: spots.altitude + spots.elevation)
+        if spots.image != nil{
+            let imagename = spots.image!
             guard let image = UIImage(named: imagename)else {
                 return print("Did not find image") }
             let annotationNode = LocationAnnotationNode(location: location, image: image)
-            sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: annotationNode)
+            
+            sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: annotationNode, action: nil)
             annotationNode.scaleRelativeToDistance = true
         }
-        if tnode != nil{
+        if spots.node != nil{
             let node = LocationNode(location: location)
-            node.geometry = tnode!.geometry
-            sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: node)
+            node.geometry = spots.node?.geometry
+            let action = SCNAction.rotateBy(x: 0, y: 6.28319, z: 0, duration: 5.3)
+            let repeataction = SCNAction.repeatForever(action)
+            node.runAction(repeataction)
+            sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: node, action: repeataction)
 
         }
         
@@ -100,54 +116,64 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
         //searchBar.placeholder = "Search Animal by Name"
     }
    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-    for indexNodes in sceneViewLocation.locationNodes {
-        sceneViewLocation.removeLocationNode(locationNode: indexNodes)
-    
-    }
-    
+        removeallNode()
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let mytextspots = destination.first(where: {$0.label.lowercased() == searchBar.text!.lowercased()}) {
             // it exists, do something
-            addpicobject(laditude: mytextspots.laditude, longitude: mytextspots.longitude, altitude: mytextspots.altitude, image: mytextspots.image, tnode: mytextspots.node, elevation: mytextspots.elevation)
+            //mytextSpots is the Spots
+            addpicobject(spots: mytextspots)
         } else {
             print("no Picture was found")
         }
+        
     }
     
-   /* func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchSpots = destination.filter({ (spots) -> Bool in
-            switch searchBar.selectedScopeButtonIndex{
-            case 0:
-                if searchText.isEmpty{return true}
-                let identifier = searchSpots[searchBar.selectedScopeButtonIndex]
-                
-                addpicobject(laditude: identifier.laditude, longitude: identifier.longitude, altitude: identifier.altitude, image: identifier.image, tnode: identifier.node, elevation: identifier.elevation)
-
-                return spots.label.lowercased().contains(searchText.lowercased())
-                
-            default:
-                return false
-                
-            }
-            
-        })
-    }*/
     //MARK: Add all the nodes and make them move
     //make the Parent node the
     
-    func trianglenode(){
-        let myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn")
-        let mynodeo = myscene!.rootNode.childNode(withName: "cone", recursively: true)
-        let rotate = SCNAction()
-        
-        mynodeo?.runAction(rotate)
-        let triangle = Spots(laditude: 32.6990, longitude: -117.1160, altitude: 4, mynode: mynodeo, name: "home", elevation: 15)
-        destination.append(triangle)
-        
-       
+    func selectednodestoPresent(){
+        guard let currentposition = sceneViewLocation.currentLocation() else {
+            return print("Current location not found")
+        }
+        multiplelocations.addpointOfIntrest()
+        for allnodes in multiplelocations.pointsofIntrest{
+            if comparedistance(spot1: allnodes.cllocation, spot2: currentposition) < 3000 {
+                addpicobject(spots: allnodes)
+            
+            }else {
+                //Add new marker here
+                //MARK: Add new design of marker
+                addpicobject(spots: allnodes)
+            }}
+        sceneView.addSubview(sceneViewLocation)
     }
+    
+    func addAllNodes(){
+        for allnodes in destination{
+            addpicobject(spots: allnodes)
+            sceneView.addSubview(sceneViewLocation)
+        }}
+    
+    func removeallNode(){
+        for indexNodes in sceneViewLocation.locationNodes {
+            sceneViewLocation.removeLocationNode(locationNode: indexNodes)
+        }
+    }
+    func comparedistance(spot1: CLLocation, spot2: CLLocation) -> Double {
+        let distanceInMeters = spot1.distance(from: spot2)// Distance in Meters
+        return distanceInMeters
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }
