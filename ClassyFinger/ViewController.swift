@@ -5,6 +5,7 @@
 //  Created by Tomas Galvan-Huerta on 11/14/18.
 //  Copyright © 2018 Somat. All rights reserved.
 // Create Museum points (sammy)
+//Learn about reference nodes
 // Create roads for the entrences of museums
 // Make several Current Location nodes for the museums
 
@@ -21,8 +22,11 @@ import CoreLocation
 class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     var sceneViewLocation = SceneLocationView()
     var destination = [Spots]()
-    let multiplelocations = Locations()
+    var pointsofIntrest = [Spots]()
     var searchSpots = [Spots]()
+    var myscene = SCNScene()
+    var spintop = SCNNode()
+    var longmarker = SCNNode()
     
     
     @IBAction func rightTouchmove(_ sender: UITapGestureRecognizer) {
@@ -53,8 +57,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     //Mark: Loading ontoo phone
     override func viewDidLoad() {
         super.viewDidLoad()
-        multiplelocations.trianglenode()
-        destination.append(contentsOf: multiplelocations.destinations)
+        myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn")!
+        spintop = myscene.rootNode.childNode(withName: "cone", recursively: true)!
+        longmarker = myscene.rootNode.childNode(withName: "capsule", recursively: true)!
         sceneView.addSubview(sceneViewLocation)
         selectednodestoPresent()
     
@@ -137,20 +142,29 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
         guard let currentposition = sceneViewLocation.currentLocation() else {
             return print("Current location not found")
         }
-        multiplelocations.addpointOfIntrest()
-        for allnodes in multiplelocations.pointsofIntrest{
+        addpointOfIntrest()
+        print("Items in points of Intrest is \(pointsofIntrest.count)")
+        for allnodes in pointsofIntrest{
             if comparedistance(spot1: allnodes.cllocation, spot2: currentposition) < 3000 {
                 addpicobject(spots: allnodes)
-            
-            }else {
-                //Add new marker here
-                //MARK: Add new design of marker
-                addpicobject(spots: allnodes)
+                switch allnodes.intrest{
+                case intrestPoints.ChicoState.rawValue:
+                   addchicoClasse()
+                case intrestPoints.SanDiegoMesaCollege.rawValue:
+                    addsandiegoMesaCollege()
+                case intrestPoints.Home.rawValue:
+                    addHome()
+                case intrestPoints.BalboaMuseums.rawValue:
+                    addSDBalboaMuseums()
+                default: print("No nodes were added")
+                }
             }}
+        
+        print("Items in destination \(destination.count)")
         sceneView.addSubview(sceneViewLocation)
     }
     
-    func addAllNodes(){
+    func addAllNodesinQuery(){
         for allnodes in destination{
             addpicobject(spots: allnodes)
             sceneView.addSubview(sceneViewLocation)
@@ -173,7 +187,40 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     
     
     
+    public enum intrestPoints: String {
+        case ChicoState = "Chico State"
+        case SanDiegoMesaCollege = "SD Mesa College"
+        case Home = "Home"
+        case BalboaMuseums = "Balboa museums"
+    }
     
+    func addpointOfIntrest(){
+        let chicoState = Spots(laditude: 39.7297, longitude: -121.8447, altitude: 30, image: nil, name: "Chico State", elevation: 65, intrest: intrestPoints.ChicoState.rawValue)
+        pointsofIntrest.append(chicoState)
+        let SDMesacollege = Spots(laditude: 32.8038, longitude: -117.1690, altitude: 50, mynode: longmarker, name: "Mesa College", elevation: 104, intrest: intrestPoints.SanDiegoMesaCollege.rawValue)
+        pointsofIntrest.append(SDMesacollege)
+        addHome()
+    }
+    
+    
+    func addchicoClasse(){
+        //append to Destination
+    }
+    func addsandiegoMesaCollege(){
+        //append to Destination
+    }
+    
+    func addSDBalboaMuseums(){
+        //append to Destination
+        
+    }
+    func addHome(){
+        let myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn")
+        let spintop = myscene!.rootNode.childNode(withName: "cone", recursively: true)
+        let home = Spots(laditude: 32.6990, longitude: -117.1160, altitude: 4, mynode: spintop, name: "home", elevation: 15, intrest: intrestPoints.Home.rawValue)
+        pointsofIntrest.append(home)
+        destination.append(home)
+    }
     
     
 }
