@@ -32,21 +32,25 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     @IBAction func rightTouchmove(_ sender: UITapGestureRecognizer) {
         sceneViewLocation.moveSceneHeadingClockwise()
     }
+    
     @IBAction func lefTouchMove(_ sender: UITapGestureRecognizer) {
         sceneViewLocation.moveSceneHeadingAntiClockwise()
-        
     }
     
     
     @IBAction func RestartNorth(_ sender: UIButton) {
         removeallNode()
+        pointsofIntrest.removeAll()
         sceneViewLocation.run()
         sceneViewLocation.resetSceneHeading()
+        addpointOfIntrest()
         selectednodestoPresent()
     }
     
     @IBAction func ShowAllNodes(_ sender: UIButton) {
         removeallNode()
+        pointsofIntrest.removeAll()
+        addpointOfIntrest()
         selectednodestoPresent()
         
     }
@@ -61,6 +65,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
         spintop = myscene.rootNode.childNode(withName: "cone", recursively: true)!
         longmarker = myscene.rootNode.childNode(withName: "capsule", recursively: true)!
         sceneView.addSubview(sceneViewLocation)
+        addpointOfIntrest()
         selectednodestoPresent()
     
     }
@@ -139,30 +144,24 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     //make the Parent node the
     
     func selectednodestoPresent(){
-        guard let currentposition = sceneViewLocation.currentLocation() else {
-            return print("Current location not found")
-        }
-        addpointOfIntrest()
-        print("Items in points of Intrest is \(pointsofIntrest.count)")
         for allnodes in pointsofIntrest{
-            if comparedistance(spot1: allnodes.cllocation, spot2: currentposition) < 3000 {
-                addpicobject(spots: allnodes)
-                switch allnodes.intrest{
-                case intrestPoints.ChicoState.rawValue:
-                   addchicoClasse()
-                case intrestPoints.SanDiegoMesaCollege.rawValue:
-                    addsandiegoMesaCollege()
-                case intrestPoints.Home.rawValue:
-                    addHome()
-                case intrestPoints.BalboaMuseums.rawValue:
-                    addSDBalboaMuseums()
-                default: print("No nodes were added")
-                }
-            }}
+         //turn list into object
+            addpicobject(spots: allnodes)
+            switch allnodes.intrest{
+            case intrestPoints.ChicoState.rawValue:
+                addchicoClasse()
+            case intrestPoints.SanDiegoMesaCollege.rawValue:
+                addsandiegoMesaCollege()
+            case intrestPoints.BalboaMuseums.rawValue:
+                addSDBalboaMuseums()
+            case intrestPoints.Home.rawValue:
+                print("Home personal nodes are added")
+            default: print("No nodes were added")
+            }
         
-        print("Items in destination \(destination.count)")
+        
         sceneView.addSubview(sceneViewLocation)
-    }
+        }}
     
     func addAllNodesinQuery(){
         for allnodes in destination{
@@ -187,7 +186,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     
     
     
-    public enum intrestPoints: String {
+        enum intrestPoints: String {
         case ChicoState = "Chico State"
         case SanDiegoMesaCollege = "SD Mesa College"
         case Home = "Home"
@@ -195,11 +194,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     }
     
     func addpointOfIntrest(){
+        guard let currentposition = sceneViewLocation.currentLocation() else {
+            return print("Current location not found")
+        }
         let chicoState = Spots(laditude: 39.7297, longitude: -121.8447, altitude: 30, image: nil, name: "Chico State", elevation: 65, intrest: intrestPoints.ChicoState.rawValue)
-        pointsofIntrest.append(chicoState)
+        if comparedistance(spot1: chicoState.cllocation, spot2: currentposition) < 800 {
+            pointsofIntrest.append(chicoState)}
         let SDMesacollege = Spots(laditude: 32.8038, longitude: -117.1690, altitude: 50, mynode: longmarker, name: "Mesa College", elevation: 104, intrest: intrestPoints.SanDiegoMesaCollege.rawValue)
-        pointsofIntrest.append(SDMesacollege)
-        addHome()
+        if comparedistance(spot1: SDMesacollege.cllocation, spot2: currentposition) < 800 {
+            pointsofIntrest.append(SDMesacollege)}
+        let home = Spots(laditude: 32.6990, longitude: -117.1160, altitude: 4, mynode: spintop, name: "home", elevation: 15, intrest: intrestPoints.Home.rawValue)
+        if comparedistance(spot1: home.cllocation, spot2: currentposition) < 800 {
+            pointsofIntrest.append(home)}
     }
     
     
@@ -213,13 +219,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     func addSDBalboaMuseums(){
         //append to Destination
         
-    }
-    func addHome(){
-        let myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn")
-        let spintop = myscene!.rootNode.childNode(withName: "cone", recursively: true)
-        let home = Spots(laditude: 32.6990, longitude: -117.1160, altitude: 4, mynode: spintop, name: "home", elevation: 15, intrest: intrestPoints.Home.rawValue)
-        pointsofIntrest.append(home)
-        destination.append(home)
     }
     
     
