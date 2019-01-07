@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E85B02721E329E1001C7962 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85B02621E329E0001C7962 /* TableViewCell.swift */; };
 		0E8C17FB21DAF2570030D140 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8C17FA21DAF2570030D140 /* Locations.swift */; };
 		0EDD887F21D7FADD00F07D24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD887E21D7FADD00F07D24 /* AppDelegate.swift */; };
 		0EDD888121D7FADD00F07D24 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EDD888021D7FADD00F07D24 /* art.scnassets */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		0102B44D0F630AEFAA92E7A3 /* Pods-ClassyFinger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassyFinger.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClassyFinger/Pods-ClassyFinger.release.xcconfig"; sourceTree = "<group>"; };
+		0E85B02621E329E0001C7962 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		0E8C17FA21DAF2570030D140 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Locations.swift; path = "/Users/tomasgh/Library/Mobile Documents/com~apple~CloudDocs/Coding/Swift/ClassyFinger/ClassyFinger/Locations.swift"; sourceTree = "<absolute>"; };
 		0EDD887B21D7FADD00F07D24 /* ClassyFinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassyFinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDD887E21D7FADD00F07D24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				0EDD888721D7FADF00F07D24 /* Assets.xcassets */,
 				0EDD888921D7FADF00F07D24 /* LaunchScreen.storyboard */,
 				0EDD888C21D7FADF00F07D24 /* Info.plist */,
+				0E85B02621E329E0001C7962 /* TableViewCell.swift */,
 				0EDD888221D7FADD00F07D24 /* ViewController.swift */,
 				0E8C17FA21DAF2570030D140 /* Locations.swift */,
 				0EDD888421D7FADD00F07D24 /* Main.storyboard */,
@@ -208,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EDD888321D7FADD00F07D24 /* ViewController.swift in Sources */,
+				0E85B02721E329E1001C7962 /* TableViewCell.swift in Sources */,
 				0E8C17FB21DAF2570030D140 /* Locations.swift in Sources */,
 				0EDD887F21D7FADD00F07D24 /* AppDelegate.swift in Sources */,
 			);
