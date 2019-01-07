@@ -284,6 +284,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
         
         if action != nil {locationNode.runAction(action!)}
 
+
         locationNodes.append(locationNode)
         sceneNode?.addChildNode(locationNode)
     }

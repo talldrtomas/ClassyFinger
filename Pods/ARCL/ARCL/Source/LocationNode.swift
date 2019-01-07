@@ -19,6 +19,12 @@ open class LocationNode: SCNNode {
 
     /// A general purpose tag that can be used to find nodes already added to a SceneLocationView
     public var tag: String?
+    
+    //This sets the material of the node
+    public var material: SCNMaterial?
+    
+    //Sets the Actions of the node
+    public var action: SCNAction?
 
     ///Whether the location of the node has been confirmed.
     ///This is automatically set to true when you create a node using a location.
@@ -85,7 +91,8 @@ open class LocationAnnotationNode: LocationNode {
         super.init(location: location)
 
         let billboardConstraint = SCNBillboardConstraint()
-        billboardConstraint.freeAxes = SCNBillboardAxis.Y
+        //Manually set the contraints to all instead of Y
+        billboardConstraint.freeAxes = SCNBillboardAxis.all
         constraints = [billboardConstraint]
 
         addChildNode(annotationNode)
