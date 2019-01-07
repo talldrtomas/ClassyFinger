@@ -8,7 +8,7 @@
 //Learn about reference nodes
 // Create roads for the entrences of museums
 // Make several Current Location nodes for the museums
-
+    
 
 import UIKit
 import SceneKit
@@ -19,7 +19,7 @@ import CoreLocation
 
 
 
-class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     var sceneViewLocation = SceneLocationView()
     var destination = [Spots]()
     var pointsofIntrest = [Spots]()
@@ -29,6 +29,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     var longmarker = SCNNode()
     
     
+    @IBOutlet weak var table: UITableView!
     @IBAction func rightTouchmove(_ sender: UITapGestureRecognizer) {
         sceneViewLocation.moveSceneHeadingClockwise()
     }
@@ -127,23 +128,27 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     }
    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         removeallNode()
+        table.isHidden = false
+        searchSpots = destination
+    
     }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        if let mytextspots = destination.first(where: {$0.label.lowercased() == searchBar.text!.lowercased()}) {
-            // it exists, do something
-            //mytextSpots is the Spots
+        table.isHidden = true
+        searchBar.resignFirstResponder()//gets rid of keyboard
+        if let mytextspots = searchSpots.first(where: {$0.label.lowercased() == searchBar.text!.lowercased()}){
             addpicobject(spots: mytextspots)
         } else {
             print("no Picture was found")
         }
-        
     }
+    
     
     //MARK: Add all the nodes and make them move
     //make the Parent node the
     
     func selectednodestoPresent(){
+        //assumtion of comparasion to 800meters
         for allnodes in pointsofIntrest{
          //turn list into object
             addpicobject(spots: allnodes)
@@ -158,8 +163,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
                 print("Home personal nodes are added")
             default: print("No nodes were added")
             }
-        
-        
         sceneView.addSubview(sceneViewLocation)
         }}
     
@@ -178,14 +181,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
         let distanceInMeters = spot1.distance(from: spot2)// Distance in Meters
         return distanceInMeters
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
         enum intrestPoints: String {
         case ChicoState = "Chico State"
         case SanDiegoMesaCollege = "SD Mesa College"
@@ -206,11 +202,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
         let home = Spots(laditude: 32.6990, longitude: -117.1160, altitude: 4, mynode: spintop, name: "home", elevation: 15, intrest: intrestPoints.Home.rawValue)
         if comparedistance(spot1: home.cllocation, spot2: currentposition) < 800 {
             pointsofIntrest.append(home)}
+        let balboaintrest = Spots(laditude: 32.7314, longitude: -117.1504, altitude: 15, mynode: spintop, name: "Balboa Park", elevation: 89, intrest: intrestPoints.BalboaMuseums.rawValue)
+        if comparedistance(spot1: balboaintrest.cllocation, spot2: currentposition) < 2400 {
+            pointsofIntrest.append(balboaintrest)}
     }
     
     
     func addchicoClasse(){
         //append to Destination
+        
     }
     func addsandiegoMesaCollege(){
         //append to Destination
@@ -218,8 +218,57 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate {
     
     func addSDBalboaMuseums(){
         //append to Destination
+        let fountain = Spots(laditude: 32.7314, longitude: -117.1468, altitude: 2, mynode: spintop, name: "fountain", elevation: 89.0, intrest: intrestPoints.BalboaMuseums.rawValue)
+        destination.append(fountain)
+        let ReubenHfleet = Spots(laditude: 32.7310, longitude: -117.1467, altitude: 10, mynode: spintop, name: "Science", elevation: 89, intrest: intrestPoints.BalboaMuseums.rawValue)
+        destination.append(ReubenHfleet)
+        let nat = Spots(laditude: 32.7318, longitude: -117.1474, altitude: 15, mynode: spintop, name: "Natural", elevation: 89, intrest: intrestPoints.BalboaMuseums.rawValue)
+        destination.append(nat)
+        let Zora = Spots(laditude: 32.7312, longitude: -117.1478, altitude: 0, mynode: spintop, name: "Zora", elevation: 76, intrest: intrestPoints.BalboaMuseums.rawValue)
+        destination.append(Zora)
+        let SDhistory = Spots(laditude: 32.7313, longitude: -117.1483, altitude: -4, mynode: spintop, name: "SDhistory", elevation: 89, intrest: intrestPoints.BalboaMuseums.rawValue)
+        destination.append(SDhistory)
+        let casadelPrado = Spots(laditude: 32.7317, longitude: -117.1486, altitude: -3, mynode: spintop, name: "Prado", elevation: 89, intrest: intrestPoints.BalboaMuseums.rawValue)
+        destination.append(casadelPrado)
+        print("added Balboa markers")
+    }
+    //MARK: - Table Controlle
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return destination.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? TableViewCell else{
+            return TableViewCell()
+        }
+        cell.label.text = destination[indexPath.row].label
+        return cell
         
     }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {searchSpots = destination
+            table.reloadData()
+            return}
+        searchSpots = destination.filter({ (spots) -> Bool in
+            return spots.label.contains(searchText.lowercased())
+        })
+        table.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchSpots = destination
+        let cell = tableView.cellForRow(at: indexPath) as? TableViewCell
+        let celltext = cell?.label.text
+        table.isHidden = true
+        searchBar.resignFirstResponder()//gets rid of keyboard
+        if let mytextspots = searchSpots.first(where: {$0.label.lowercased() == celltext!.lowercased()}){
+            addpicobject(spots: mytextspots)
+        } else {
+            print("no Picture was found")
+        }
+        
+    }
+    
     
     
 }
