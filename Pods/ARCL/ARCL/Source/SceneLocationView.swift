@@ -365,6 +365,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     }
 
     public func updatePositionAndScaleOfLocationNode(locationNode: LocationNode, initialSetup: Bool = false, animated: Bool = false, duration: TimeInterval = 0.1) {
+        
         guard let currentPosition = currentScenePosition(),
             let currentLocation = currentLocation() else {
             return

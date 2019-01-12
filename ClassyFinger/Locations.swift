@@ -8,6 +8,7 @@
 import Foundation
 import ARKit
 import CoreLocation
+let world = "high"
 
 class Spots: NSObject, ARSCNViewDelegate {
     let laditude: Double
@@ -45,7 +46,10 @@ class Spots: NSObject, ARSCNViewDelegate {
     
 }
     
+    
+    
     }
+
 
 
 
