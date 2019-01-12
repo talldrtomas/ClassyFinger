@@ -57,14 +57,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         selectednodestoPresent()
     }
     
-    @IBAction func ShowAllNodes(_ sender: UIButton) {
-        removeallNode()
-        pointsofIntrest.removeAll()
-        addpointOfIntrest()
-        selectednodestoPresent()
-        
-    }
-    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var sceneView: ARSCNView!
 
@@ -282,9 +274,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
     }
     
     
-    
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchSpots = destination
         let cell = tableView.cellForRow(at: indexPath) as? TableCell
@@ -424,7 +413,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(commonGrounds)
         let atm = Spots(laditude: 39.7283, longitude: -121.8450, altitude: 10, mynode: spintop, name: "ATM", elevation: elevation, intrest: intrest.rawValue)
         destination.append(atm)
-        let laxon = Spots(laditude: 39.7298, longitude: -121.8438, altitude: 10, mynode: spintop, name: "ATM", elevation: elevation, intrest: intrest.rawValue)
+        let laxon = Spots(laditude: 39.7298, longitude: -121.8438, altitude: 10, mynode: spintop, name: "Laxson hall", elevation: elevation, intrest: intrest.rawValue)
         destination.append(laxon)
         let meriamlibrary = Spots(laditude: 39.7281, longitude: -121.8462, altitude: 10, mynode: spintop, name: "Meriam Library", elevation: elevation, intrest: intrest.rawValue)
         destination.append(meriamlibrary)
