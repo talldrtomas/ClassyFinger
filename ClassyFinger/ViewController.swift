@@ -34,8 +34,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
     var pointsofIntrest = [Spots]()
     var searchSpots = [Spots]()
     var myscene = SCNScene()
+    var mazescene = SCNScene()
     var spintop = SCNNode()
-    var longmarker = SCNNode()
+    var arrowNode = SCNNode()
+    var mazeNode = SCNNode()
     
     
     @IBOutlet weak var table: UITableView!
@@ -55,6 +57,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         sceneViewLocation.resetSceneHeading()
         addpointOfIntrest()
         selectednodestoPresent()
+        setupMaze()
     }
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -79,8 +82,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         super.viewWillAppear(animated)
         sceneViewLocation.run()
         myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn")!
+        mazescene = SCNScene(named: "art.scnassets/maze.scn")!
         spintop = myscene.rootNode.childNode(withName: "cone", recursively: true)!
-        longmarker = myscene.rootNode.childNode(withName: "capsule", recursively: true)!
+        arrowNode = myscene.rootNode.childNode(withName: "arrows", recursively: true)!
+        mazeNode = mazescene.rootNode.childNode(withName: "Maze1", recursively: true)!
+        
     }
     //--------------------------------------------------------------------------//
     
@@ -112,8 +118,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
             let repeataction = SCNAction.repeatForever(action)
             node.runAction(repeataction)
             sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: node, action: repeataction)
+            let arrows = LocationNode(location: location)
+            arrows.geometry = arrowNode.geometry
+            sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: arrows, action: nil)
 
         }
+        
+    }
+    func setupMaze(){
+        let mazecoordinate = CLLocationCoordinate2D(latitude: 39.7276, longitude: -121.8460)
+        let mazelocation = CLLocation(coordinate: mazecoordinate, altitude: 59)
+        let mymazenode = LocationNode(location: mazelocation)
+        mymazenode.geometry = mazeNode.geometry
+        sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: mymazenode, action: nil)
         
     }
 
@@ -138,7 +155,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         searchBar.resignFirstResponder()//gets rid of keyboard
         if let mytextspots = searchSpots.first(where: {$0.label.lowercased() == searchBar.text!.lowercased()}){
             addpicobject(spots: mytextspots)
-            longmarker80metersfor(spot: mytextspots)
+            
         } else {
             print("no Picture was found")
         }
@@ -198,7 +215,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
             pointsofIntrest.append(chicoState)
             print("With in chico state")
         }
-        let SDMesacollege = Spots(laditude: 32.8038, longitude: -117.1690, altitude: 50, mynode: longmarker, name: "Mesa College", elevation: 104, intrest: intrestPoints.SanDiegoMesaCollege.rawValue)
+        let SDMesacollege = Spots(laditude: 32.8038, longitude: -117.1690, altitude: 50, mynode: spintop, name: "Mesa College", elevation: 104, intrest: intrestPoints.SanDiegoMesaCollege.rawValue)
         if comparedistance(spot1: SDMesacollege.cllocation, spot2: currentposition) < 800 {
             pointsofIntrest.append(SDMesacollege)}
         let home = Spots(laditude: 32.6990, longitude: -117.1160, altitude: 4, mynode: spintop, name: "home", elevation: 15, intrest: intrestPoints.Home.rawValue)
@@ -207,22 +224,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         let balboaintrest = Spots(laditude: 32.7314, longitude: -117.1504, altitude: 15, mynode: spintop, name: "Balboa Park", elevation: 89, intrest: intrestPoints.BalboaMuseums.rawValue)
         if comparedistance(spot1: balboaintrest.cllocation, spot2: currentposition) < 2400 {
             pointsofIntrest.append(balboaintrest)}
-    }
-    
-    func longmarker80metersfor(spot: Spots){
-        //if long marker is  80 meters show
-        //if inside hide the marker
-        guard let currentposition = sceneViewLocation.currentLocation() else {
-            return print("Current location not found")
-        }
-        if comparedistance(spot1: spot.cllocation, spot2: currentposition) < 100 {
-            let node = LocationNode(location: spot.cllocation)
-            node.geometry = longmarker.geometry
-            //let action = SCNAction.rotateBy(x: 0, y: 6.28319, z: 0, duration: 5.3)
-            //let repeataction = SCNAction.repeatForever(action)
-           // node.runAction(repeataction)
-            sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: node, action: nil)
-        }
     }
     
     
@@ -283,7 +284,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         if let mytextspots = searchSpots.first(where: {$0.label.lowercased() == celltext!.lowercased()}){
             searchBar.text = celltext
             addpicobject(spots: mytextspots)
-            longmarker80metersfor(spot: mytextspots)
+            
         } else {
             print("no Picture was found")
         }

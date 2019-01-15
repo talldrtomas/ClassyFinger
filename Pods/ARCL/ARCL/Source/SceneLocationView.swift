@@ -279,8 +279,9 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
         if locationNode.location == nil || locationNode.locationConfirmed == false {
             return print("No node found")
         }
-
-        updatePositionAndScaleOfLocationNode(locationNode: locationNode, initialSetup: true, animated: false)
+        //Mark: - animated this part
+        
+        updatePositionAndScaleOfLocationNode(locationNode: locationNode, initialSetup: true, animated: true)
         
         if action != nil {locationNode.runAction(action!)}
 
