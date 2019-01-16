@@ -44,9 +44,13 @@
                                 </connections>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQ1-3H-Ykb">
-                                <rect key="frame" x="163" y="558" width="42" height="30"/>
+                                <rect key="frame" x="91" y="510" width="193" height="109"/>
                                 <gestureRecognizers/>
-                                <state key="normal" title="RestN"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="40"/>
+                                <state key="normal" title="Start/Reset">
+                                    <color key="titleColor" red="0.62737947702407837" green="0.63269168138504028" blue="0.91889876127243042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="RestartNorth:" destination="BV1-FR-VrT" eventType="touchUpInside" id="v2C-LB-fMg"/>
                                 </connections>
@@ -64,7 +68,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What class?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOR-wC-F2T">
-                                                    <rect key="frame" x="15" y="9" width="111" height="26"/>
+                                                    <rect key="frame" x="15" y="9.5" width="111" height="26"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -89,23 +93,23 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="AQ1-3H-Ykb" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="05J-nq-jEk"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="AQ1-3H-Ykb" secondAttribute="bottom" constant="48" id="0Ul-eq-iAC"/>
                             <constraint firstItem="EF4-uQ-9Jk" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="0uR-1s-iua"/>
                             <constraint firstItem="EcL-m1-Wdb" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="AUk-Zc-OkW"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="EcL-m1-Wdb" secondAttribute="bottom" constant="582" id="CAK-Ii-Akr"/>
                             <constraint firstItem="3jN-TK-LTr" firstAttribute="bottom" secondItem="EF4-uQ-9Jk" secondAttribute="bottom" id="DTJ-yf-OWG"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
                             <constraint firstItem="EF4-uQ-9Jk" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="HRh-Of-oJg"/>
-                            <constraint firstItem="AQ1-3H-Ykb" firstAttribute="leading" secondItem="U0K-SW-4ec" secondAttribute="leading" constant="163" id="Mor-nu-HSI"/>
-                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="AQ1-3H-Ykb" secondAttribute="bottom" constant="79" id="P90-g0-Cpu"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
                             <constraint firstItem="3jN-TK-LTr" firstAttribute="leading" secondItem="U0K-SW-4ec" secondAttribute="leading" constant="325" id="VxN-6y-zgt"/>
                             <constraint firstItem="EcL-m1-Wdb" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="10" id="Wpu-g9-Hjt"/>
                             <constraint firstItem="3jN-TK-LTr" firstAttribute="trailing" secondItem="EcL-m1-Wdb" secondAttribute="trailing" id="XNj-xM-ZN1"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
-                            <constraint firstItem="3jN-TK-LTr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AQ1-3H-Ykb" secondAttribute="trailing" constant="8" symbolic="YES" id="ZS9-Ae-qlh"/>
                             <constraint firstItem="3jN-TK-LTr" firstAttribute="leading" secondItem="EF4-uQ-9Jk" secondAttribute="trailing" constant="275" id="amo-2Y-RcH"/>
                             <constraint firstItem="EcL-m1-Wdb" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="bU0-10-Ugh"/>
                             <constraint firstItem="EF4-uQ-9Jk" firstAttribute="top" secondItem="EcL-m1-Wdb" secondAttribute="bottom" id="hjp-0F-9Mv"/>
+                            <constraint firstItem="AQ1-3H-Ykb" firstAttribute="top" secondItem="EcL-m1-Wdb" secondAttribute="bottom" constant="425" id="mNQ-fH-sEf"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
                             <constraint firstItem="3jN-TK-LTr" firstAttribute="top" secondItem="EF4-uQ-9Jk" secondAttribute="top" id="z5c-W0-zXZ"/>
                         </constraints>

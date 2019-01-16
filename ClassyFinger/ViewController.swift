@@ -26,8 +26,6 @@ enum intrestPoints: String {
 
 
 class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
-   
-
     
     var sceneViewLocation = SceneLocationView()
     var destination = [Spots]()
@@ -121,7 +119,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
             let arrows = LocationNode(location: location)
             arrows.geometry = arrowNode.geometry
             sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: arrows, action: nil)
-
         }
         
     }
@@ -131,8 +128,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         let mymazenode = LocationNode(location: mazelocation)
         mymazenode.geometry = mazeNode.geometry
         sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: mymazenode, action: nil)
-        
     }
+    
 
     
     //MARK: - SearchBar

@@ -275,11 +275,12 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
     ///location not being nil, and locationConfirmed being true are required
     ///Upon being added, a node's position will be modified and should not be changed externally.
     ///location will not be modified, but taken as accurate.
+    // Mark: - animated this part
     public func addLocationNodeWithConfirmedLocation(locationNode: LocationNode, action: SCNAction?) {
         if locationNode.location == nil || locationNode.locationConfirmed == false {
             return print("No node found")
         }
-        //Mark: - animated this part
+
         
         updatePositionAndScaleOfLocationNode(locationNode: locationNode, initialSetup: true, animated: true)
         
