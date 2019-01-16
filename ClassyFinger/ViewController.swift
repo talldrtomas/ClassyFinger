@@ -83,7 +83,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         mazescene = SCNScene(named: "art.scnassets/maze.scn")!
         spintop = myscene.rootNode.childNode(withName: "cone", recursively: true)!
         arrowNode = myscene.rootNode.childNode(withName: "arrows", recursively: true)!
-        mazeNode = mazescene.rootNode.childNode(withName: "Maze1", recursively: true)!
+        mazeNode = mazescene.rootNode.childNode(withName: "Maze2", recursively: true)!
         
     }
     //--------------------------------------------------------------------------//
@@ -122,9 +122,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         }
         
     }
+    
     func setupMaze(){
-        let mazecoordinate = CLLocationCoordinate2D(latitude: 39.7276, longitude: -121.8460)
-        let mazelocation = CLLocation(coordinate: mazecoordinate, altitude: 59)
+       // let mazecoordinate = CLLocationCoordinate2D(latitude: 39.7276, longitude: -121.8460)
+        let mazecoordinate = CLLocationCoordinate2D(latitude: 39.7262, longitude: -121.8537)
+        let mazelocation = CLLocation(coordinate: mazecoordinate, altitude: 30)
         let mymazenode = LocationNode(location: mazelocation)
         mymazenode.geometry = mazeNode.geometry
         sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: mymazenode, action: nil)
@@ -366,8 +368,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         let OC312 = Spots(laditude: 39.7278, longitude: -121.848, altitude: thirdFloor, mynode: spintop, name: "OCNL 312", elevation: elevation, intrest: intrest.rawValue)
         destination.append(OC312)
         
-        
-        
         //Fourth Floor
         
         let OC419 = Spots(laditude: 39.7278, longitude: -121.845, altitude: fourthFloor, mynode: spintop, name: "OCNL 419", elevation: elevation, intrest: intrest.rawValue)
@@ -467,18 +467,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(performingArtsCenter)
         let paulandYasukoZingg = Spots(laditude: 39.728500, longitude: -121.844066, altitude: 10, mynode: spintop, name: "Paul and Yasuko Zingg Recital Hall", elevation: elevation, intrest: intrest.rawValue)
         destination.append(paulandYasukoZingg)
-        
-
-        
-        
-
-        
-        
     }
-    
-    
-    
-    
-    
 }
-//
+
+
