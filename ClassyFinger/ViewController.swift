@@ -62,18 +62,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
     @IBOutlet var sceneView: ARSCNView!
 
     //Mark: Loading ontoo phone
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         sceneView.addSubview(sceneViewLocation)
         addpointOfIntrest()
         selectednodestoPresent()
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         sceneViewLocation.frame = view.bounds
-        
-        
-        
     }
     //--------------------------------------------------------------------------//
     override func viewWillAppear(_ animated: Bool) {
@@ -84,14 +82,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         spintop = myscene.rootNode.childNode(withName: "cone", recursively: true)!
         arrowNode = myscene.rootNode.childNode(withName: "arrows", recursively: true)!
         mazeNode = mazescene.rootNode.childNode(withName: "Maze2", recursively: true)!
-        
     }
     //--------------------------------------------------------------------------//
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         sceneViewLocation.pause()
-        
     }
     
 
@@ -131,9 +127,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         mymazenode.geometry = mazeNode.geometry
         sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: mymazenode, action: nil)
     }
-    
 
-    
     //MARK: - SearchBar
     
     func alterLayout() {
@@ -142,6 +136,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         searchBar.sizeToFit()
         //searchBar.placeholder = "Search Animal by Name"
     }
+    
    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         removeallNode()
         table.isHidden = false
@@ -169,10 +164,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         table.reloadData()
     }
     
-    
     //MARK: - Add all the nodes and make them move
     //make the Parent node the
-    
     func selectednodestoPresent(){
         //assumtion of comparasion to 800meters
         for allnodes in pointsofIntrest{
@@ -198,11 +191,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
             sceneViewLocation.removeLocationNode(locationNode: indexNodes)
         }
     }
+    
     func comparedistance(spot1: CLLocation, spot2: CLLocation) -> Double {
         let distanceInMeters = spot1.distance(from: spot2)// Distance in Meters
         return distanceInMeters
     }
-
     
     //main points to determine location radius
     func addpointOfIntrest(){
@@ -234,10 +227,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         let intrest = intrestPoints.ChicoState
         oconnellBuilding(intrest: intrest)
         chicononclasse(intrest: intrest)
-        
         //append to Destination
-        
     }
+    
     func addsandiegoMesaCollege(){
         //append to Destination
         
@@ -260,6 +252,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(casadelPrado)
         print("added Balboa markers")
     }
+    
     //MARK: - Table Controller
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchSpots.count
@@ -272,8 +265,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         
         return cell
     }
-    
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchSpots = destination
         let cell = tableView.cellForRow(at: indexPath) as? TableCell
@@ -283,7 +275,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         if let mytextspots = searchSpots.first(where: {$0.label.lowercased() == celltext!.lowercased()}){
             searchBar.text = celltext
             addpicobject(spots: mytextspots)
-            
         } else {
             print("no Picture was found")
         }
@@ -369,7 +360,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(OC312)
         
         //Fourth Floor
-        
         let OC419 = Spots(laditude: 39.7278, longitude: -121.845, altitude: fourthFloor, mynode: spintop, name: "OCNL 419", elevation: elevation, intrest: intrest.rawValue)
         destination.append(OC419)
         let OC438 = Spots(laditude: 39.7276, longitude: -121.846, altitude: fourthFloor, mynode: spintop, name: "OCNL 438", elevation: elevation, intrest: intrest.rawValue)
@@ -382,7 +372,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(OC436)
         let OC434 = Spots(laditude: 39.7278, longitude: -121.847, altitude: fourthFloor, mynode: spintop, name: "OCNL 434", elevation: elevation, intrest: intrest.rawValue)
         destination.append(OC434)
-        
 }
     
     func chicononclasse(intrest: intrestPoints){

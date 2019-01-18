@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E85B02721E329E1001C7962 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85B02621E329E0001C7962 /* TableCell.swift */; };
 		0E8C17FB21DAF2570030D140 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8C17FA21DAF2570030D140 /* Locations.swift */; };
+		0EBF164221F23BAC005E4E7F /* InstructionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBF164121F23BAC005E4E7F /* InstructionController.swift */; };
 		0EDD887F21D7FADD00F07D24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD887E21D7FADD00F07D24 /* AppDelegate.swift */; };
 		0EDD888121D7FADD00F07D24 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EDD888021D7FADD00F07D24 /* art.scnassets */; };
 		0EDD888321D7FADD00F07D24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD888221D7FADD00F07D24 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 		0102B44D0F630AEFAA92E7A3 /* Pods-ClassyFinger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassyFinger.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClassyFinger/Pods-ClassyFinger.release.xcconfig"; sourceTree = "<group>"; };
 		0E85B02621E329E0001C7962 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		0E8C17FA21DAF2570030D140 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Locations.swift; path = "/Users/tomasgh/Library/Mobile Documents/com~apple~CloudDocs/Coding/Swift/ClassyFinger/ClassyFinger/Locations.swift"; sourceTree = "<absolute>"; };
+		0EBF164121F23BAC005E4E7F /* InstructionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionController.swift; sourceTree = "<group>"; };
 		0EDD887B21D7FADD00F07D24 /* ClassyFinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassyFinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDD887E21D7FADD00F07D24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EDD888021D7FADD00F07D24 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				0EDD888221D7FADD00F07D24 /* ViewController.swift */,
 				0E8C17FA21DAF2570030D140 /* Locations.swift */,
 				0EDD888421D7FADD00F07D24 /* Main.storyboard */,
+				0EBF164121F23BAC005E4E7F /* InstructionController.swift */,
 			);
 			path = ClassyFinger;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				0EDD888321D7FADD00F07D24 /* ViewController.swift in Sources */,
 				0E85B02721E329E1001C7962 /* TableCell.swift in Sources */,
 				0E8C17FB21DAF2570030D140 /* Locations.swift in Sources */,
+				0EBF164221F23BAC005E4E7F /* InstructionController.swift in Sources */,
 				0EDD887F21D7FADD00F07D24 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
