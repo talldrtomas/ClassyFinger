@@ -32,10 +32,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
     var pointsofIntrest = [Spots]()
     var searchSpots = [Spots]()
     var myscene = SCNScene()
-    var mazescene = SCNScene()
     var spintop = SCNNode()
     var arrowNode = SCNNode()
-    var mazeNode = SCNNode()
     
     
     @IBOutlet weak var table: UITableView!
@@ -55,7 +53,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         sceneViewLocation.resetSceneHeading()
         addpointOfIntrest()
         selectednodestoPresent()
-        setupMaze()
     }
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -78,10 +75,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         super.viewWillAppear(animated)
         sceneViewLocation.run()
         myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn")!
-        mazescene = SCNScene(named: "art.scnassets/maze.scn")!
         spintop = myscene.rootNode.childNode(withName: "cone", recursively: true)!
         arrowNode = myscene.rootNode.childNode(withName: "arrows", recursively: true)!
-        mazeNode = mazescene.rootNode.childNode(withName: "Maze2", recursively: true)!
     }
     //--------------------------------------------------------------------------//
     
@@ -117,15 +112,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
             sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: arrows, action: nil)
         }
         
-    }
-    
-    func setupMaze(){
-       // let mazecoordinate = CLLocationCoordinate2D(latitude: 39.7276, longitude: -121.8460)
-        let mazecoordinate = CLLocationCoordinate2D(latitude: 39.7262, longitude: -121.8537)
-        let mazelocation = CLLocation(coordinate: mazecoordinate, altitude: 30)
-        let mymazenode = LocationNode(location: mazelocation)
-        mymazenode.geometry = mazeNode.geometry
-        sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: mymazenode, action: nil)
     }
 
     //MARK: - SearchBar
@@ -287,7 +273,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         let secondFloor = 10.0
         let thirdFloor = 20.0
         let fourthFloor = 30.0
-        let OC124 = Spots(laditude: 39.7276, longitude: -121.8474, altitude: 0, mynode: spintop, name: "OCNL 124", elevation: elevation, intrest: intrest.rawValue)
+        /*let OC124 = Spots(laditude: 39.7276, longitude: -121.8474, altitude: 0, mynode: spintop, name: "OCNL 124", elevation: elevation, intrest: intrest.rawValue)
         destination.append(OC124)
         let OC130 = Spots(laditude: 39.7275, longitude: -121.8476, altitude: 0, mynode: spintop, name: "OCNL 130", elevation: elevation, intrest: intrest.rawValue)
         destination.append(OC130)
@@ -371,7 +357,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         let OC436 = Spots(laditude: 39.7278, longitude: -121.847, altitude: fourthFloor, mynode: spintop, name: "OCNL 436", elevation: elevation, intrest: intrest.rawValue)
         destination.append(OC436)
         let OC434 = Spots(laditude: 39.7278, longitude: -121.847, altitude: fourthFloor, mynode: spintop, name: "OCNL 434", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC434)
+        destination.append(OC434)*/
 }
     
     func chicononclasse(intrest: intrestPoints){
@@ -456,6 +442,25 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(performingArtsCenter)
         let paulandYasukoZingg = Spots(laditude: 39.728500, longitude: -121.844066, altitude: 10, mynode: spintop, name: "Paul and Yasuko Zingg Recital Hall", elevation: elevation, intrest: intrest.rawValue)
         destination.append(paulandYasukoZingg)
+        let universityVillage = Spots(laditude: 39.7313, longitude: -121.8636, altitude: 10, mynode: spintop, name: "University Village", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(universityVillage)
+        let parkingG1 = Spots(laditude: 39.7309, longitude: -121.8522, altitude: 10, mynode: spintop, name: "G1 Parking", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(parkingG1)
+        let parkingG2 = Spots(laditude: 39.7263, longitude: -121.8494, altitude: 10, mynode: spintop, name: "G2 Parking", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(parkingG2)
+        let parkingG3 = Spots(laditude: 39.7248, longitude: -121.8476, altitude: 10, mynode: spintop, name: "G3 Parking", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(parkingG3)
+        let parkingG4 = Spots(laditude: 39.7251, longitude: -121.8470, altitude: 10, mynode: spintop, name: "G4 Parking", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(parkingG4)
+        let parkingG5 = Spots(laditude: 39.7267, longitude: -121.8468, altitude: 20, mynode: spintop, name: "G5 Parking", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(parkingG5)
+        let parkingG7 = Spots(laditude: 39.7272, longitude: -121.8441, altitude: 10, mynode: spintop, name: "G7 Parking", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(parkingG7)
+        let parkingG8 = Spots(laditude: 39.7312, longitude: -121.8508, altitude: 10, mynode: spintop, name: "G8 Parking", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(parkingG8)
+        
+        
+        
     }
 }
 

@@ -124,7 +124,7 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
         session.pause()
         print("Function is about to run")
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .horizontal
+        configuration.planeDetection = [.horizontal, .vertical]
         configuration.worldAlignment = .gravityAndHeading
         
         // Run the view's session

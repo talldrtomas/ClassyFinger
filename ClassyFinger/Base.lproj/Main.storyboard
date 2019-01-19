@@ -9,20 +9,78 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Instruction Controller-->
         <scene sceneID="Oxu-JR-Fvf">
             <objects>
-                <viewController id="4rK-8Q-Imz" sceneMemberID="viewController">
+                <viewController id="4rK-8Q-Imz" customClass="InstructionController" customModule="ClassyFinger" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U2A-nV-IW4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXw-2x-aeN">
+                                <rect key="frame" x="261" y="40" width="114" height="607"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="b7j-eK-oZL" appends="YES" id="f5K-7G-TfH"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Degrees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNa-4Q-fjI">
+                                <rect key="frame" x="155" y="278" width="65" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kPB-KP-QR3">
+                                <rect key="frame" x="16" y="40" width="260" height="220"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="UZJ-YY-KVq"/>
+                                </constraints>
+                                <mutableString key="text">To get the best results  -Have the degrees to 0 or close (+-5)  -Wait 10 seconds for the phone to adjust position  -Start outside  -If indoors(because of an zombie apocolypse) stand next to a window  -Works terrible inside  a building becuase of Science....(Faraday's box)</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c25-tV-aVs">
+                                <rect key="frame" x="64" y="364" width="229" height="217"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="217" id="qSP-w9-V6O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="90"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Zot-MJ-SsG" firstAttribute="trailing" secondItem="kPB-KP-QR3" secondAttribute="trailing" constant="99" id="2GY-Tu-RUb"/>
+                            <constraint firstItem="GXw-2x-aeN" firstAttribute="top" secondItem="Zot-MJ-SsG" secondAttribute="top" constant="20" id="PdX-TH-QAl"/>
+                            <constraint firstItem="c25-tV-aVs" firstAttribute="leading" secondItem="Zot-MJ-SsG" secondAttribute="leading" constant="64" id="Vsj-T1-3cd"/>
+                            <constraint firstItem="GXw-2x-aeN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HNa-4Q-fjI" secondAttribute="trailing" constant="8" symbolic="YES" id="Wcu-3Y-vw5"/>
+                            <constraint firstItem="GXw-2x-aeN" firstAttribute="top" secondItem="kPB-KP-QR3" secondAttribute="top" id="Y0B-O9-icE"/>
+                            <constraint firstItem="Zot-MJ-SsG" firstAttribute="trailing" secondItem="c25-tV-aVs" secondAttribute="trailing" constant="82" id="ZWK-SD-CRl"/>
+                            <constraint firstAttribute="bottom" secondItem="GXw-2x-aeN" secondAttribute="bottom" constant="20" id="cD1-sg-TjY"/>
+                            <constraint firstItem="HNa-4Q-fjI" firstAttribute="top" secondItem="kPB-KP-QR3" secondAttribute="bottom" constant="18" id="f3g-Y9-8E8"/>
+                            <constraint firstItem="kPB-KP-QR3" firstAttribute="leading" secondItem="U2A-nV-IW4" secondAttribute="leadingMargin" id="hhA-Wt-oOo"/>
+                            <constraint firstItem="GXw-2x-aeN" firstAttribute="leading" secondItem="U2A-nV-IW4" secondAttribute="leading" constant="261" id="ipD-al-Gxb"/>
+                            <constraint firstItem="c25-tV-aVs" firstAttribute="top" secondItem="HNa-4Q-fjI" secondAttribute="bottom" constant="65" id="itO-BN-slV"/>
+                            <constraint firstAttribute="trailing" secondItem="GXw-2x-aeN" secondAttribute="trailing" id="raL-GH-tAF"/>
+                            <constraint firstItem="HNa-4Q-fjI" firstAttribute="leading" secondItem="Zot-MJ-SsG" secondAttribute="leading" constant="155" id="y4F-n3-Tmp"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Zot-MJ-SsG"/>
                     </view>
+                    <connections>
+                        <outlet property="degreeLabel" destination="c25-tV-aVs" id="bx7-3M-73d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8TO-L6-eFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="b7j-eK-oZL">
+                    <connections>
+                        <segue destination="BV1-FR-VrT" kind="show" id="qx0-Y5-DoC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1183" y="140"/>
+            <point key="canvasLocation" x="-1353" y="140"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
