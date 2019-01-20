@@ -22,7 +22,6 @@ class InstructionController: UIViewController, CLLocationManagerDelegate{
         if CLLocationManager.headingAvailable(){
             locationmaneger.headingFilter = 5
             locationmaneger.startUpdatingHeading()
-            
         }
         
         // Do any additional setup after loading the view.
