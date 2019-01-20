@@ -4,10 +4,7 @@
 //
 //  Created by Tomas Galvan-Huerta on 11/14/18.
 //  Copyright © 2018 Somat. All rights reserved.
-// Create Museum points (sammy)
-//Learn about reference nodes
-// Create roads for the entrences of museums
-// Make several Current Location nodes for the museums
+//
     
 
 import UIKit
@@ -86,7 +83,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
     }
     
 
-    //MARK: Create function to make things easier
     
     func addpicobject(spots: Spots){
         let coordinate = CLLocationCoordinate2D(latitude: spots.laditude, longitude: spots.longitude)
@@ -135,6 +131,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         searchBar.resignFirstResponder()//gets rid of keyboard
         if let mytextspots = searchSpots.first(where: {$0.label.lowercased() == searchBar.text!.lowercased()}){
             addpicobject(spots: mytextspots)
+            addlabelAbove(spots: mytextspots)
             
         } else {
             print("no Picture was found")
@@ -157,6 +154,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         for allnodes in pointsofIntrest{
          //turn list into object
             addpicobject(spots: allnodes)
+            addlabelAbove(spots: allnodes)
             switch allnodes.intrest{
             case intrestPoints.ChicoState.rawValue:
                 addchicoClasse()
@@ -189,7 +187,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
             return print("Current location not found")
         }
         let chicoState = Spots(laditude: 39.7297, longitude: -121.8447, altitude: 30, image: nil, name: "Chico State", elevation: 65, intrest: intrestPoints.ChicoState.rawValue)
-        if comparedistance(spot1: chicoState.cllocation, spot2: currentposition) < 2400 {
+        if comparedistance(spot1: chicoState.cllocation, spot2: currentposition) < 24000 {
             pointsofIntrest.append(chicoState)
             print("With in chico state")
         }
@@ -200,7 +198,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         if comparedistance(spot1: home.cllocation, spot2: currentposition) < 2000 {
             pointsofIntrest.append(home)}
         let balboaintrest = Spots(laditude: 32.7314, longitude: -117.1504, altitude: 15, mynode: spintop, name: "Balboa Park", elevation: 89, intrest: intrestPoints.BalboaMuseums.rawValue)
-        if comparedistance(spot1: balboaintrest.cllocation, spot2: currentposition) < 2400 {
+        if comparedistance(spot1: balboaintrest.cllocation, spot2: currentposition) < 24000 {
             pointsofIntrest.append(balboaintrest)}
     }
     
@@ -211,7 +209,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
     
     func addchicoClasse(){
         let intrest = intrestPoints.ChicoState
-        oconnellBuilding(intrest: intrest)
         chicononclasse(intrest: intrest)
         //append to Destination
     }
@@ -261,19 +258,20 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         if let mytextspots = searchSpots.first(where: {$0.label.lowercased() == celltext!.lowercased()}){
             searchBar.text = celltext
             addpicobject(spots: mytextspots)
+            addlabelAbove(spots: mytextspots)
         } else {
             print("no Picture was found")
         }
     }
     
-    func oconnellBuilding(intrest: intrestPoints){
+   /* func oconnellBuilding(intrest: intrestPoints){
     //add O'connell classes
         //MARK: - Add teacher classroom - Missing
         let elevation = 59.13
         let secondFloor = 10.0
         let thirdFloor = 20.0
         let fourthFloor = 30.0
-        /*let OC124 = Spots(laditude: 39.7276, longitude: -121.8474, altitude: 0, mynode: spintop, name: "OCNL 124", elevation: elevation, intrest: intrest.rawValue)
+        let OC124 = Spots(laditude: 39.7276, longitude: -121.8474, altitude: 0, mynode: spintop, name: "OCNL 124", elevation: elevation, intrest: intrest.rawValue)
         destination.append(OC124)
         let OC130 = Spots(laditude: 39.7275, longitude: -121.8476, altitude: 0, mynode: spintop, name: "OCNL 130", elevation: elevation, intrest: intrest.rawValue)
         destination.append(OC130)
@@ -357,28 +355,28 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         let OC436 = Spots(laditude: 39.7278, longitude: -121.847, altitude: fourthFloor, mynode: spintop, name: "OCNL 436", elevation: elevation, intrest: intrest.rawValue)
         destination.append(OC436)
         let OC434 = Spots(laditude: 39.7278, longitude: -121.847, altitude: fourthFloor, mynode: spintop, name: "OCNL 434", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC434)*/
-}
+        destination.append(OC434)
+}*/
     
     func chicononclasse(intrest: intrestPoints){
         let elevation = 59.13
         let soccerstadium = Spots(laditude: 39.7322, longitude: -121.8539, altitude: 10 , mynode: spintop, name: "Soccer Stadium", elevation: elevation, intrest: intrest.rawValue)
         destination.append(soccerstadium)
-        let baseballfield = Spots(laditude: 39.7304, longitude: -121.8536, altitude: 10, mynode: spintop, name: "Nettleton Stadium", elevation: elevation, intrest: intrest.rawValue)
+        let baseballfield = Spots(laditude: 39.7304, longitude: -121.8536, altitude: 10, mynode: spintop, name: "Nettleton Stadium ", elevation: elevation, intrest: intrest.rawValue)
         destination.append(baseballfield)
         let trackfield = Spots(laditude: 39.7301, longitude: -121.8510, altitude: 10, mynode: spintop, name: "Track and Field", elevation: elevation, intrest: intrest.rawValue)
         destination.append(trackfield)
-        let soccertraining = Spots(laditude: 39.7295, longitude: -121.8523, altitude: 10, mynode: spintop, name: "Soccer Trainging", elevation: elevation, intrest: intrest.rawValue)
+        let soccertraining = Spots(laditude: 39.7295, longitude: -121.8523, altitude: 10, mynode: spintop, name: "Soccer Training", elevation: elevation, intrest: intrest.rawValue)
         destination.append(soccertraining)
         let tennis = Spots(laditude: 39.7288, longitude: -121.8509, altitude: 10, mynode: spintop, name: "Tennis Courts", elevation: elevation, intrest: intrest.rawValue)
         destination.append(tennis)
         let sutterCafe = Spots(laditude: 39.7301, longitude: -121.8490, altitude: 10, mynode: spintop, name: "Sutter Cafe", elevation: elevation, intrest: intrest.rawValue)
         destination.append(sutterCafe)
-        let shutterHall = Spots(laditude: 39.7308, longitude: -121.8485, altitude: 10, mynode: spintop, name: "Tennis Courts", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(shutterHall)
+        let sutterHall = Spots(laditude: 39.7308, longitude: -121.8485, altitude: 10, mynode: spintop, name: "Sutter Hall ", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(sutterHall)
         let theHub = Spots(laditude: 39.7314, longitude: -121.8478, altitude: 10, mynode: spintop, name: "The Hub", elevation: elevation, intrest: intrest.rawValue)
         destination.append(theHub)
-        let shurmerGym = Spots(laditude: 39.7291, longitude: -121.8490, altitude: 10, mynode: spintop, name: "Shurmer Gym", elevation: elevation, intrest: intrest.rawValue)
+        let shurmerGym = Spots(laditude: 39.7291, longitude: -121.8490, altitude: 10, mynode: spintop, name: "Shurmer Gym - SGYM", elevation: elevation, intrest: intrest.rawValue)
         destination.append(shurmerGym)
         let wildcatStore = Spots(laditude: 39.7279, longitude: -121.8453, altitude: 10, mynode: spintop, name: "Wildcat Store", elevation: elevation, intrest: intrest.rawValue)
         destination.append(wildcatStore)
@@ -386,11 +384,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(commonGrounds)
         let atm = Spots(laditude: 39.7283, longitude: -121.8450, altitude: 10, mynode: spintop, name: "ATM", elevation: elevation, intrest: intrest.rawValue)
         destination.append(atm)
-        let laxon = Spots(laditude: 39.7298, longitude: -121.8438, altitude: 10, mynode: spintop, name: "Laxson hall", elevation: elevation, intrest: intrest.rawValue)
+        let laxon = Spots(laditude: 39.7298, longitude: -121.8438, altitude: 10, mynode: spintop, name: "Laxson Hall", elevation: elevation, intrest: intrest.rawValue)
         destination.append(laxon)
-        let meriamlibrary = Spots(laditude: 39.7281, longitude: -121.8462, altitude: 10, mynode: spintop, name: "Meriam Library", elevation: elevation, intrest: intrest.rawValue)
+        let meriamlibrary = Spots(laditude: 39.7281, longitude: -121.8462, altitude: 10, mynode: spintop, name: "Meriam Library MLIB", elevation: elevation, intrest: intrest.rawValue)
         destination.append(meriamlibrary)
-        let wrec = Spots(laditude: 39.7263, longitude: -121.8476, altitude: 10, mynode: spintop, name: "WREC - Wildcat Recreation Center", elevation: elevation, intrest: intrest.rawValue)
+        let wrec = Spots(laditude: 39.7263, longitude: -121.8476, altitude: 10, mynode: spintop, name: "Wildcat Recreation Center - WREC", elevation: elevation, intrest: intrest.rawValue)
         destination.append(wrec)
         let konkoHall = Spots(laditude: 39.7329, longitude: -121.853157, altitude: 10, mynode: spintop, name: "Konkow Hall", elevation: elevation, intrest: intrest.rawValue)
         destination.append(konkoHall)
@@ -398,21 +396,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(mechopda)
         let esken = Spots(laditude: 39.731879, longitude: -121.852549, altitude: 10, mynode: spintop, name: "Esken Hall", elevation: elevation, intrest: intrest.rawValue)
         destination.append(esken)
-        let healthCenter = Spots(laditude: 39.730672, longitude: -121.850306, altitude: 10, mynode: spintop, name: "Health Center", elevation: elevation, intrest: intrest.rawValue)
+        let healthCenter = Spots(laditude: 39.730672, longitude: -121.850306, altitude: 10, mynode: spintop, name: "Student Health Center - SHC", elevation: elevation, intrest: intrest.rawValue)
         destination.append(healthCenter)
-        let ackerGym = Spots(laditude: 39.729884, longitude: -121.849726, altitude: 10, mynode: spintop, name: "Acker Gym", elevation: elevation, intrest: intrest.rawValue)
+        let ackerGym = Spots(laditude: 39.729884, longitude: -121.849726, altitude: 10, mynode: spintop, name: "Acker Gym - AGYM", elevation: elevation, intrest: intrest.rawValue)
         destination.append(ackerGym)
-        let sutterHall = Spots(laditude: 39.730750, longitude: -121.848472, altitude: 10, mynode: spintop, name: "Sutter Hall", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(sutterHall)
         let whitneyHall = Spots(laditude: 39.730516, longitude: -121.848981, altitude: 10, mynode: spintop, name: "Whitney Hall", elevation: elevation, intrest: intrest.rawValue)
         destination.append(whitneyHall)
-        let tehamaHall = Spots(laditude: 39.729936, longitude: -121.848609, altitude: 10, mynode: spintop, name: "Tehama Hall", elevation: elevation, intrest: intrest.rawValue)
+        let tehamaHall = Spots(laditude: 39.729936, longitude: -121.848609, altitude: 10, mynode: spintop, name: "Tehama Hall - THMA", elevation: elevation, intrest: intrest.rawValue)
         destination.append(tehamaHall)
         let yoloHall = Spots(laditude: 39.728701, longitude: -121.849941, altitude: 10, mynode: spintop, name: "Yolo Hall", elevation: elevation, intrest: intrest.rawValue)
         destination.append(yoloHall)
-        let plumasHall = Spots(laditude: 39.729706, longitude: -121.848239, altitude: 10, mynode: spintop, name: "Plumas Hall", elevation: elevation, intrest: intrest.rawValue)
+        let plumasHall = Spots(laditude: 39.729706, longitude: -121.848239, altitude: 10, mynode: spintop, name: "Plumas Hall PLMS", elevation: elevation, intrest: intrest.rawValue)
         destination.append(plumasHall)
-        let butteHall = Spots(laditude: 39.729978, longitude: -121.847296, altitude: 10, mynode: spintop, name: "Butte Hall", elevation: elevation, intrest: intrest.rawValue)
+        let butteHall = Spots(laditude: 39.729978, longitude: -121.847296, altitude: 10, mynode: spintop, name: "Butte Hall - BUTE", elevation: elevation, intrest: intrest.rawValue)
         destination.append(butteHall)
         let lassenHall = Spots(laditude: 39.730532, longitude: -121.847363, altitude: 10, mynode: spintop, name: "Lassen Hall", elevation: elevation, intrest: intrest.rawValue)
         destination.append(lassenHall)
@@ -424,26 +420,30 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(sylvesterscafe)
         let janetturnerprintmuseum = Spots(laditude: 39.729551, longitude: -121.845628, altitude: 10, mynode: spintop, name: "Janet Turner Print Museum", elevation: elevation, intrest: intrest.rawValue)
         destination.append(janetturnerprintmuseum)
-        let GlenHall = Spots(laditude: 39.729127, longitude: -121.846319, altitude: 10, mynode: spintop, name: "Glen Hall", elevation: elevation, intrest: intrest.rawValue)
+        let GlenHall = Spots(laditude: 39.729127, longitude: -121.846319, altitude: 10, mynode: spintop, name: "Glenn Hall - GLNN", elevation: elevation, intrest: intrest.rawValue)
         destination.append(GlenHall)
         let roseGarden = Spots(laditude: 39.729114, longitude: -121.845878, altitude: 10, mynode: spintop, name: "Rose Garden", elevation: elevation, intrest: intrest.rawValue)
         destination.append(roseGarden)
-        let trinityHall = Spots(laditude: 39.729114, longitude: -121.845878, altitude: 10, mynode: spintop, name: "Trinity Hall", elevation: elevation, intrest: intrest.rawValue)
+        let trinityHall = Spots(laditude: 39.729114, longitude: -121.845878, altitude: 10, mynode: spintop, name: "Trinity Hall TRNT", elevation: elevation, intrest: intrest.rawValue)
         destination.append(trinityHall)
-        let bellMemorial = Spots(laditude: 39.730532, longitude: -121.847363, altitude: 10, mynode: spintop, name: "Bell Memorial Union", elevation: elevation, intrest: intrest.rawValue)
+        let bellMemorial = Spots(laditude: 39.730532, longitude: -121.847363, altitude: 10, mynode: spintop, name: "Bell Memorial Union BMU", elevation: elevation, intrest: intrest.rawValue)
         destination.append(bellMemorial)
         let anthropologyMuseum = Spots(laditude: 39.728185, longitude: -121.846129, altitude: 10, mynode: spintop, name: "Valene L. Smith Museum of Anthropology", elevation: elevation, intrest: intrest.rawValue)
         destination.append(anthropologyMuseum)
-        let oconnellcenter = Spots(laditude: 39.727558, longitude: -121.847423, altitude: 10, mynode: spintop, name: "O'Connell Center", elevation: elevation, intrest: intrest.rawValue)
+        let oconnellcenter = Spots(laditude: 39.727558, longitude: -121.847423, altitude: 10, mynode: spintop, name: "O'Connell Center - OCNL", elevation: elevation, intrest: intrest.rawValue)
         destination.append(oconnellcenter)
-        let langdonEngineering = Spots(laditude: 39.727191, longitude: -121.847460, altitude: 10, mynode: spintop, name: "Langdon Engineering Center", elevation: elevation, intrest: intrest.rawValue)
+        let langdonEngineering = Spots(laditude: 39.727191, longitude: -121.847460, altitude: 10, mynode: spintop, name: "Langdon Engineering Center - LANG", elevation: elevation, intrest: intrest.rawValue)
         destination.append(langdonEngineering)
-        let performingArtsCenter = Spots(laditude: 39.728500, longitude: -121.844066, altitude: 10, mynode: spintop, name: "Performing Arts Center", elevation: elevation, intrest: intrest.rawValue)
+        let performingArtsCenter = Spots(laditude: 39.728500, longitude: -121.844066, altitude: 10, mynode: spintop, name: "Performing Arts Center - PAC", elevation: elevation, intrest: intrest.rawValue)
         destination.append(performingArtsCenter)
         let paulandYasukoZingg = Spots(laditude: 39.728500, longitude: -121.844066, altitude: 10, mynode: spintop, name: "Paul and Yasuko Zingg Recital Hall", elevation: elevation, intrest: intrest.rawValue)
         destination.append(paulandYasukoZingg)
-        let universityVillage = Spots(laditude: 39.7313, longitude: -121.8636, altitude: 10, mynode: spintop, name: "University Village", elevation: elevation, intrest: intrest.rawValue)
+        let universityVillage = Spots(laditude: 39.7313, longitude: -121.8636, altitude: 10, mynode: spintop, name: "University Village ", elevation: elevation, intrest: intrest.rawValue)
         destination.append(universityVillage)
+        let modochall = Spots(laditude: 39.73233, longitude: -121.84496, altitude: 10, mynode: spintop, name: "Modoc Hall - MODC", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(modochall)
+        let childdevelop = Spots(laditude: 39.73297, longitude: -121.84474, altitude: 10, mynode: spintop, name: "Aymer J. Hamilton Building - AJH", elevation: elevation, intrest: intrest.rawValue)
+            destination.append(childdevelop)
         let parkingG1 = Spots(laditude: 39.7309, longitude: -121.8522, altitude: 10, mynode: spintop, name: "G1 Parking", elevation: elevation, intrest: intrest.rawValue)
         destination.append(parkingG1)
         let parkingG2 = Spots(laditude: 39.7263, longitude: -121.8494, altitude: 10, mynode: spintop, name: "G2 Parking", elevation: elevation, intrest: intrest.rawValue)
@@ -458,10 +458,34 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(parkingG7)
         let parkingG8 = Spots(laditude: 39.7312, longitude: -121.8508, altitude: 10, mynode: spintop, name: "G8 Parking", elevation: elevation, intrest: intrest.rawValue)
         destination.append(parkingG8)
-        
-        
+        let studentServicesBuilding = Spots(laditude: 39.7270, longitude: -121.8457, altitude: 10, mynode: spintop, name: "Student Services Center - SSC", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(studentServicesBuilding)
+        let dummyMovies = Spots(laditude: 39.7604, longitude: -121.8467, altitude: 20, mynode: spintop, name: "Movies", elevation: 64.62, intrest: intrest.rawValue)
+        destination.append(dummyMovies)
+        let physcialScience = Spots(laditude: 39.7310, longitude: -121.8433, altitude: 10, mynode: spintop, name: "Physical Science Building - PHSC", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(physcialScience)
+        let ayrelshall = Spots(laditude: 39.7305, longitude: -121.8435, altitude: 10, mynode: spintop, name: "Ayres Hall - AYRS", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(ayrelshall)
         
     }
+    
+    func addlabelAbove(spots: Spots){
+        let coordinate = CLLocationCoordinate2D(latitude: spots.laditude, longitude: spots.longitude)
+        let location = CLLocation(coordinate: coordinate, altitude: spots.altitude + spots.elevation + 15)
+        
+        let geometry = SCNText(string: spots.label, extrusionDepth: 2)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.lightText
+        geometry.materials = [material]
+        let node = LocationNode(location: location)
+        node.geometry = geometry
+        node.scale = SCNVector3(3.0, 3.0, 3.0)
+        let action = SCNAction.rotateBy(x: 0, y: -6.28319, z: 0, duration: 15.0)
+        let repeataction = SCNAction.repeatForever(action)
+        node.runAction(repeataction)
+        sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: node, action: repeataction)
+    }
+    
 }
 
 

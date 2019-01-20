@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 
+
 class InstructionController: UIViewController, CLLocationManagerDelegate{
         let locationmaneger = CLLocationManager()
     @IBOutlet weak var degreeLabel: UILabel!
