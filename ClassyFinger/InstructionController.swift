@@ -27,7 +27,7 @@ class InstructionController: UIViewController, CLLocationManagerDelegate{
         // Do any additional setup after loading the view.
     }
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        degreeLabel.text = String(newHeading.magneticHeading.rounded())
+        degreeLabel.text = "\(Int(newHeading.magneticHeading.rounded()))°"
     }
     
 
