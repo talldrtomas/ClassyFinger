@@ -483,6 +483,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         let action = SCNAction.rotateBy(x: 0, y: -6.28319, z: 0, duration: 15.0)
         let repeataction = SCNAction.repeatForever(action)
         node.runAction(repeataction)
+        var constrain = SCNConstraint()
+        let billboardConstraint = SCNBillboardConstraint()
+        //Manually set the contraints to all instead of Y
+        billboardConstraint.freeAxes = SCNBillboardAxis.all
+        constrain = billboardConstraint
+        node.constraints = [constrain]
         sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: node, action: repeataction)
     }
     

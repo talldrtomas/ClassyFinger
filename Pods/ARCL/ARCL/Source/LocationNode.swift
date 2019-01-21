@@ -87,6 +87,7 @@ open class LocationAnnotationNode: LocationNode {
 
         annotationNode = SCNNode()
         annotationNode.geometry = plane
+    
 
         super.init(location: location)
 
@@ -94,6 +95,7 @@ open class LocationAnnotationNode: LocationNode {
         //Manually set the contraints to all instead of Y
         billboardConstraint.freeAxes = SCNBillboardAxis.all
         constraints = [billboardConstraint]
+        annotationNode.constraints = constraints
 
         addChildNode(annotationNode)
         
