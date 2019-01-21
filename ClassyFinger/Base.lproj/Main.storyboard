@@ -20,28 +20,24 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXw-2x-aeN">
                                 <rect key="frame" x="261" y="40" width="114" height="607"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="button arrow" highlightedImage="button2" translatesAutoresizingMaskIntoConstraints="NO" id="ccz-LS-cPc">
-                                        <rect key="frame" x="18" y="520" width="79" height="79"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button arrow" highlightedImage="button2" translatesAutoresizingMaskIntoConstraints="NO" id="ccz-LS-cPc">
+                                        <rect key="frame" x="5.4875280783698779" y="378.94188256445881" width="74.775823656016158" height="74.775823656000057"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="0E0-z9-g9k"/>
+                                            <constraint firstAttribute="width" constant="100" id="vc6-PI-0xL"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.54217344889999997" blue="0.48766207090000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ccz-LS-cPc" secondAttribute="bottom" id="6o0-5E-6yh"/>
+                                    <constraint firstItem="ccz-LS-cPc" firstAttribute="centerX" secondItem="GXw-2x-aeN" secondAttribute="centerX" id="aC1-Mt-zDY"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="b7j-eK-oZL" appends="YES" id="f5K-7G-TfH"/>
                                 </connections>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kPB-KP-QR3">
-                                <rect key="frame" x="24" y="322" width="335" height="220"/>
-                                <color key="backgroundColor" red="1" green="0.35532869379999998" blue="0.48120199270000003" alpha="0.38310680650000001" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="220" id="UZJ-YY-KVq"/>
-                                </constraints>
-                                <string key="text">To get the best results -Have the degrees to 0 or close (+-5) -Wait 10 seconds for the phone to adjust position -Start outside -If indoors(because of an zombie apocolypse) stand next to a window -Works terrible inside  a building becuase of Science....(Faraday's box)</string>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c25-tV-aVs">
                                 <rect key="frame" x="24" y="33" width="229" height="217"/>
                                 <constraints>
@@ -52,6 +48,17 @@
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kPB-KP-QR3">
+                                <rect key="frame" x="24" y="258" width="335" height="220"/>
+                                <color key="backgroundColor" red="1" green="0.35532869379999998" blue="0.48120199270000003" alpha="0.38310680650000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="UZJ-YY-KVq"/>
+                                </constraints>
+                                <string key="text">To get the best results -Have the degrees to 0 or close (+-5) -Wait 10 seconds for the phone to adjust position -Start outside -If indoors(because of an zombie apocolypse) stand next to a window -Works terrible inside  a building becuase of Science....(Faraday's box)</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.58823529411764708" green="0.90980392156862744" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -60,7 +67,7 @@
                             <constraint firstItem="GXw-2x-aeN" firstAttribute="leading" secondItem="c25-tV-aVs" secondAttribute="trailing" constant="8" symbolic="YES" id="DJk-2M-MEz"/>
                             <constraint firstAttribute="trailing" secondItem="GXw-2x-aeN" secondAttribute="trailing" id="MQI-Dv-Y3n"/>
                             <constraint firstItem="c25-tV-aVs" firstAttribute="leading" secondItem="Zot-MJ-SsG" secondAttribute="leading" constant="24" id="PTj-7C-PqX"/>
-                            <constraint firstItem="kPB-KP-QR3" firstAttribute="top" secondItem="c25-tV-aVs" secondAttribute="bottom" constant="72" id="kIO-Lh-g1m"/>
+                            <constraint firstItem="kPB-KP-QR3" firstAttribute="top" secondItem="c25-tV-aVs" secondAttribute="bottom" constant="8" id="kIO-Lh-g1m"/>
                             <constraint firstItem="GXw-2x-aeN" firstAttribute="top" secondItem="Zot-MJ-SsG" secondAttribute="top" constant="20" id="tu1-GF-Dc2"/>
                             <constraint firstItem="c25-tV-aVs" firstAttribute="leading" secondItem="kPB-KP-QR3" secondAttribute="leading" id="w5H-Tt-0sr"/>
                             <constraint firstItem="c25-tV-aVs" firstAttribute="top" secondItem="Zot-MJ-SsG" secondAttribute="top" constant="13" id="wE8-th-HSZ"/>
@@ -78,7 +85,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1354.4000000000001" y="139.880059970015"/>
+            <point key="canvasLocation" x="-1355.072463768116" y="139.4021739130435"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -92,16 +99,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </arscnView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EF4-uQ-9Jk" userLabel="left">
-                                <rect key="frame" x="0.0" y="280" width="50" height="582"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EF4-uQ-9Jk" userLabel="left">
+                                <rect key="frame" x="0.0" y="86" width="75" height="581"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="8Ak-Fy-7Aw"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="KmT-Qc-ls0" appends="YES" id="DXm-Ld-cqk"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3jN-TK-LTr" userLabel="right">
-                                <rect key="frame" x="325" y="280" width="50" height="582"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3jN-TK-LTr" userLabel="right">
+                                <rect key="frame" x="300" y="86" width="75" height="581"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="aVt-r8-4Bu"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="iW8-y3-PLb" appends="YES" id="fdG-om-KEL"/>
                                 </connections>
@@ -128,7 +141,7 @@
                                 </connections>
                             </button>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6ls-MW-taa">
-                                <rect key="frame" x="0.0" y="17" width="375" height="581"/>
+                                <rect key="frame" x="0.0" y="23" width="375" height="581"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="ZE4-OH-cNj" customClass="TableCell" customModule="ClassyFinger" customModuleProvider="target">
@@ -174,13 +187,13 @@
                             <constraint firstItem="3jN-TK-LTr" firstAttribute="bottom" secondItem="EF4-uQ-9Jk" secondAttribute="bottom" id="DTJ-yf-OWG"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
                             <constraint firstItem="EF4-uQ-9Jk" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="HRh-Of-oJg"/>
+                            <constraint firstItem="EF4-uQ-9Jk" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="Mcs-Lh-UvQ"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
-                            <constraint firstItem="3jN-TK-LTr" firstAttribute="leading" secondItem="U0K-SW-4ec" secondAttribute="leading" constant="325" id="VxN-6y-zgt"/>
                             <constraint firstItem="EcL-m1-Wdb" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="10" id="Wpu-g9-Hjt"/>
                             <constraint firstItem="3jN-TK-LTr" firstAttribute="trailing" secondItem="EcL-m1-Wdb" secondAttribute="trailing" id="XNj-xM-ZN1"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
-                            <constraint firstItem="3jN-TK-LTr" firstAttribute="leading" secondItem="EF4-uQ-9Jk" secondAttribute="trailing" constant="275" id="amo-2Y-RcH"/>
                             <constraint firstItem="EcL-m1-Wdb" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="bU0-10-Ugh"/>
+                            <constraint firstItem="EF4-uQ-9Jk" firstAttribute="top" secondItem="EcL-m1-Wdb" secondAttribute="bottom" id="pSz-ZG-6v4"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
                             <constraint firstItem="3jN-TK-LTr" firstAttribute="top" secondItem="EF4-uQ-9Jk" secondAttribute="top" id="z5c-W0-zXZ"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="6ls-MW-taa" secondAttribute="bottom" id="zlq-nU-6kT"/>
