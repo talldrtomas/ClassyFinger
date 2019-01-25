@@ -80,10 +80,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         sceneViewLocation.pause()
+        
     }
     
 
-    
+    //MARK: - Add pictures and Objects Function
     func addpicobject(spots: Spots){
         let coordinate = CLLocationCoordinate2D(latitude: spots.laditude, longitude: spots.longitude)
         let location = CLLocation(coordinate: coordinate, altitude: spots.altitude + spots.elevation)
@@ -107,7 +108,30 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
             arrows.geometry = arrowNode.geometry
             sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: arrows, action: nil)
         }
+    }
+
+    func addlabelAbove(spots: Spots){
+        let coordinate = CLLocationCoordinate2D(latitude: spots.laditude, longitude: spots.longitude)
+        let location = CLLocation(coordinate: coordinate, altitude: spots.altitude + spots.elevation + 150)
         
+        let geometry = SCNText(string: spots.label, extrusionDepth: 3)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.red
+        geometry.materials = [material]
+        let node = LocationNode(location: location)
+        node.geometry = geometry
+        node.scale = SCNVector3(100.0, 100.0, 100.0)
+        let action = SCNAction.rotateBy(x: 0, y: -6.28319, z: 0, duration: 15.0)
+        let repeataction = SCNAction.repeatForever(action)
+        node.runAction(repeataction)
+        var constrain = SCNConstraint()
+        let billboardConstraint = SCNBillboardConstraint()
+        //Manually set the contraints to all instead of Y
+        billboardConstraint.freeAxes = SCNBillboardAxis.all
+        constrain = billboardConstraint
+        node.constraints = [constrain]
+        
+        sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: node, action: repeataction)
     }
 
     //MARK: - SearchBar
@@ -116,7 +140,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         navigationItem.titleView = searchBar
         searchBar.showsScopeBar = true // you can show/hide this dependant on your layout
         searchBar.sizeToFit()
-        //searchBar.placeholder = "Search Animal by Name"
     }
     
    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -148,8 +171,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
     }
     
     //MARK: - Add all the nodes and make them move
-    //make the Parent node the
-    func selectednodestoPresent(){
+        func selectednodestoPresent(){
         //assumtion of comparasion to 800meters
         for allnodes in pointsofIntrest{
          //turn list into object
@@ -181,7 +203,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         return distanceInMeters
     }
     
-    //main points to determine location radius
+    //MARK: - Main points to determine location radius
     func addpointOfIntrest(){
         guard let currentposition = sceneViewLocation.currentLocation() else {
             return print("Current location not found")
@@ -203,9 +225,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
     }
     
     
-    //MARK: - Check to see if this rennder works
-    //this can update the distance of the node in Destination
-    
+    //MARK: - Functions to Append into Destination
     
     func addchicoClasse(){
         let intrest = intrestPoints.ChicoState
@@ -235,6 +255,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(casadelPrado)
         print("added Balboa markers")
     }
+    
     
     //MARK: - Table Controller
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -266,7 +287,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
     
    /* func oconnellBuilding(intrest: intrestPoints){
     //add O'connell classes
-        //MARK: - Add teacher classroom - Missing
         let elevation = 59.13
         let secondFloor = 10.0
         let thirdFloor = 20.0
@@ -372,7 +392,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(tennis)
         let sutterCafe = Spots(laditude: 39.7301, longitude: -121.8490, altitude: 10, mynode: spintop, name: "Sutter Cafe", elevation: elevation, intrest: intrest.rawValue)
         destination.append(sutterCafe)
-        let sutterHall = Spots(laditude: 39.7308, longitude: -121.8485, altitude: 10, mynode: spintop, name: "Sutter Hall ", elevation: elevation, intrest: intrest.rawValue)
+        let sutterHall = Spots(laditude: 39.7308, longitude: -121.8485, altitude: 10, mynode: spintop, name: "Sutter Hall", elevation: elevation, intrest: intrest.rawValue)
         destination.append(sutterHall)
         let theHub = Spots(laditude: 39.7314, longitude: -121.8478, altitude: 10, mynode: spintop, name: "The Hub", elevation: elevation, intrest: intrest.rawValue)
         destination.append(theHub)
@@ -416,17 +436,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(shastaHall)
         let holtHall = Spots(laditude: 39.730949, longitude: -121.845309, altitude: 10, mynode: spintop, name: "Holt Hall", elevation: elevation, intrest: intrest.rawValue)
         destination.append(holtHall)
-        let sylvesterscafe = Spots(laditude: 39.729976, longitude: -121.845225, altitude: 10, mynode: spintop, name: "Selvester's Cafe", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(sylvesterscafe)
+        let creeksidecafe = Spots(laditude: 39.729976, longitude: -121.845225, altitude: 10, mynode: spintop, name: "Creakside Cafe", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(creeksidecafe)
         let janetturnerprintmuseum = Spots(laditude: 39.729551, longitude: -121.845628, altitude: 10, mynode: spintop, name: "Janet Turner Print Museum", elevation: elevation, intrest: intrest.rawValue)
         destination.append(janetturnerprintmuseum)
         let GlenHall = Spots(laditude: 39.729127, longitude: -121.846319, altitude: 10, mynode: spintop, name: "Glenn Hall - GLNN", elevation: elevation, intrest: intrest.rawValue)
         destination.append(GlenHall)
         let roseGarden = Spots(laditude: 39.729114, longitude: -121.845878, altitude: 10, mynode: spintop, name: "Rose Garden", elevation: elevation, intrest: intrest.rawValue)
         destination.append(roseGarden)
-        let trinityHall = Spots(laditude: 39.729114, longitude: -121.845878, altitude: 10, mynode: spintop, name: "Trinity Hall TRNT", elevation: elevation, intrest: intrest.rawValue)
+        let trinityHall = Spots(laditude: 39.729114, longitude: -121.845878, altitude: 10, mynode: spintop, name: "Trinity Hall - TRNT", elevation: elevation, intrest: intrest.rawValue)
         destination.append(trinityHall)
-        let bellMemorial = Spots(laditude: 39.730532, longitude: -121.847363, altitude: 10, mynode: spintop, name: "Bell Memorial Union BMU", elevation: elevation, intrest: intrest.rawValue)
+        let bellMemorial = Spots(laditude: 39.7280, longitude: -121.8449, altitude: 10, mynode: spintop, name: "Bell Memorial Union - BMU", elevation: elevation, intrest: intrest.rawValue)
         destination.append(bellMemorial)
         let anthropologyMuseum = Spots(laditude: 39.728185, longitude: -121.846129, altitude: 10, mynode: spintop, name: "Valene L. Smith Museum of Anthropology", elevation: elevation, intrest: intrest.rawValue)
         destination.append(anthropologyMuseum)
@@ -434,11 +454,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(oconnellcenter)
         let langdonEngineering = Spots(laditude: 39.727191, longitude: -121.847460, altitude: 10, mynode: spintop, name: "Langdon Engineering Center - LANG", elevation: elevation, intrest: intrest.rawValue)
         destination.append(langdonEngineering)
-        let performingArtsCenter = Spots(laditude: 39.728500, longitude: -121.844066, altitude: 10, mynode: spintop, name: "Performing Arts Center - PAC", elevation: elevation, intrest: intrest.rawValue)
+        let performingArtsCenter = Spots(laditude: 39.7285, longitude: -121.8439, altitude: 10, mynode: spintop, name: "Performing Arts Center - PAC", elevation: elevation, intrest: intrest.rawValue)
         destination.append(performingArtsCenter)
+        let artsAndHumanities = Spots(laditude: 39.729111, longitude: -121.843179, altitude: 10, mynode: spintop, name: "Arts and Humanities - ARTS", elevation: elevation, intrest: intrest.rawValue)
+            destination.append(artsAndHumanities)
         let paulandYasukoZingg = Spots(laditude: 39.728500, longitude: -121.844066, altitude: 10, mynode: spintop, name: "Paul and Yasuko Zingg Recital Hall", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(paulandYasukoZingg)
-        let universityVillage = Spots(laditude: 39.7313, longitude: -121.8636, altitude: 10, mynode: spintop, name: "University Village ", elevation: elevation, intrest: intrest.rawValue)
+            destination.append(paulandYasukoZingg)
+        let colusa = Spots(laditude: 39.729587, longitude: -121.845732, altitude: 10, mynode: spintop, name: "Colusa Hall - CLSA", elevation: elevation, intrest: intrest.rawValue)
+            destination.append(colusa)
+        let universityVillage = Spots(laditude: 39.7313, longitude: -121.8636, altitude: 10, mynode: spintop, name: "University Village", elevation: elevation, intrest: intrest.rawValue)
         destination.append(universityVillage)
         let modochall = Spots(laditude: 39.73233, longitude: -121.84496, altitude: 10, mynode: spintop, name: "Modoc Hall - MODC", elevation: elevation, intrest: intrest.rawValue)
         destination.append(modochall)
@@ -460,37 +484,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         destination.append(parkingG8)
         let studentServicesBuilding = Spots(laditude: 39.7270, longitude: -121.8457, altitude: 10, mynode: spintop, name: "Student Services Center - SSC", elevation: elevation, intrest: intrest.rawValue)
         destination.append(studentServicesBuilding)
-        let dummyMovies = Spots(laditude: 39.7604, longitude: -121.8467, altitude: 20, mynode: spintop, name: "Movies", elevation: 64.62, intrest: intrest.rawValue)
-        destination.append(dummyMovies)
         let physcialScience = Spots(laditude: 39.7310, longitude: -121.8433, altitude: 10, mynode: spintop, name: "Physical Science Building - PHSC", elevation: elevation, intrest: intrest.rawValue)
         destination.append(physcialScience)
         let ayrelshall = Spots(laditude: 39.7305, longitude: -121.8435, altitude: 10, mynode: spintop, name: "Ayres Hall - AYRS", elevation: elevation, intrest: intrest.rawValue)
         destination.append(ayrelshall)
+        let kendallHall = Spots(laditude: 39.729671, longitude: -121.844825, altitude: 10, mynode: spintop, name: "Kendal Hall", elevation: elevation, intrest: intrest.rawValue)
+        destination.append(kendallHall)
+        
         
     }
     
-    func addlabelAbove(spots: Spots){
-        let coordinate = CLLocationCoordinate2D(latitude: spots.laditude, longitude: spots.longitude)
-        let location = CLLocation(coordinate: coordinate, altitude: spots.altitude + spots.elevation + 15)
-        
-        let geometry = SCNText(string: spots.label, extrusionDepth: 2)
-        let material = SCNMaterial()
-        material.diffuse.contents = UIColor.lightText
-        geometry.materials = [material]
-        let node = LocationNode(location: location)
-        node.geometry = geometry
-        node.scale = SCNVector3(3.0, 3.0, 3.0)
-        let action = SCNAction.rotateBy(x: 0, y: -6.28319, z: 0, duration: 15.0)
-        let repeataction = SCNAction.repeatForever(action)
-        node.runAction(repeataction)
-        var constrain = SCNConstraint()
-        let billboardConstraint = SCNBillboardConstraint()
-        //Manually set the contraints to all instead of Y
-        billboardConstraint.freeAxes = SCNBillboardAxis.all
-        constrain = billboardConstraint
-        node.constraints = [constrain]
-        sceneViewLocation.addLocationNodeWithConfirmedLocation(locationNode: node, action: repeataction)
-    }
     
 }
 

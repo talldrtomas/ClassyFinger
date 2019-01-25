@@ -17,35 +17,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Face North" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdw-Ri-jEP">
-                                <rect key="frame" x="91" y="90" width="193" height="49"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FaceNorth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jta-8X-e8K">
+                                <rect key="frame" x="33.5" y="30" width="308.5" height="84"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goose" highlightedImage="goose" translatesAutoresizingMaskIntoConstraints="NO" id="gR9-6g-Xnd">
-                                <rect key="frame" x="8" y="95" width="359" height="552"/>
-                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="abc" translatesAutoresizingMaskIntoConstraints="NO" id="rvo-mr-Ucq">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.59195220470428467" green="0.75063550472259521" blue="0.91330987215042114" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gR9-6g-Xnd" secondAttribute="trailing" constant="8" id="4FA-OE-i3o"/>
-                            <constraint firstItem="fdw-Ri-jEP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Cko-YC-d8x"/>
-                            <constraint firstItem="fdw-Ri-jEP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="Ihb-G8-jQl"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gR9-6g-Xnd" secondAttribute="bottom" constant="20" id="hrj-EM-TjS"/>
-                            <constraint firstItem="gR9-6g-Xnd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="75" id="jE5-ya-Z7S"/>
-                            <constraint firstItem="gR9-6g-Xnd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="ypS-Gb-fzg"/>
+                            <constraint firstItem="jta-8X-e8K" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="d3W-k2-zoz"/>
+                            <constraint firstItem="rvo-mr-Ucq" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="hF3-8a-Nfw"/>
+                            <constraint firstItem="rvo-mr-Ucq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lDg-Hf-wck"/>
+                            <constraint firstItem="rvo-mr-Ucq" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="nRt-YO-XkI"/>
+                            <constraint firstItem="rvo-mr-Ucq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="o2P-yS-AmR"/>
+                            <constraint firstItem="jta-8X-e8K" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="oyg-BM-sVi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+            <point key="canvasLocation" x="49.275362318840585" y="373.36956521739131"/>
         </scene>
     </scenes>
     <resources>
-        <image name="goose" width="1536" height="2048"/>
+        <image name="abc" width="1024" height="1024"/>
     </resources>
 </document>

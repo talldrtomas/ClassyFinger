@@ -13,6 +13,7 @@ import CoreLocation
 class InstructionController: UIViewController, CLLocationManagerDelegate{
         let locationmaneger = CLLocationManager()
     @IBOutlet weak var degreeLabel: UILabel!
+    @IBOutlet weak var nextbutton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +21,24 @@ class InstructionController: UIViewController, CLLocationManagerDelegate{
         locationmaneger.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 
         if CLLocationManager.headingAvailable(){
-            locationmaneger.headingFilter = 5
+            locationmaneger.headingFilter = 1
             locationmaneger.startUpdatingHeading()
         }
         
         // Do any additional setup after loading the view.
     }
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        degreeLabel.text = "\(Int(newHeading.magneticHeading.rounded()))°"
+        let degreenumber = Int(newHeading.magneticHeading.rounded())
+        
+        degreeLabel.text = "\(degreenumber)°"
+        if degreenumber == 1 || degreenumber == 0 || degreenumber == 360{
+            nextbutton.isEnabled = true
+            nextbutton.isHidden = false
+        }
+        else{
+            nextbutton.isEnabled = false
+            nextbutton.isHidden = true
+        }
     }
     
 
