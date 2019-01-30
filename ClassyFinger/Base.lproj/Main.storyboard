@@ -23,7 +23,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="UZJ-YY-KVq"/>
                                 </constraints>
-                                <mutableString key="text">To get the best results -Start outside -Calibrate to 0 degrees -Works terrible inside  a building becuase of Science....(Faraday's box) -Click bottom right arrow     Tips -If indoors(because of a zombie apocolypse) stand next to a window -Press start next page then search for building -Wait 10 seconds for the phone to adjust position -Restart app Everytime app is reopen</mutableString>
+                                <mutableString key="text">Best Results: 1.Start outside 2.Calibrate to 0 degrees (North) 3.Click bottom right arrow  4.Restart after every use       Tips -If indoors(because of a zombie apocolypse) stand next to a window -Works terrible indoors -Touch "Press to begin" then search for building</mutableString>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" secureTextEntry="YES"/>
@@ -117,11 +117,13 @@
                                 </connections>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQ1-3H-Ykb">
-                                <rect key="frame" x="67" y="559" width="241" height="60"/>
+                                <rect key="frame" x="67" y="511" width="241" height="108"/>
                                 <color key="backgroundColor" red="0.66666668653488159" green="0.31159449358818758" blue="0.31437388501624169" alpha="0.4414330051369863" colorSpace="custom" customColorSpace="displayP3"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="40"/>
-                                <state key="normal" title="Press to begin">
+                                <state key="normal">
+                                    <string key="title">Press to begin
+</string>
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" red="0.5983502538071066" green="0.32548338218966893" blue="0.20402185001365841" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -193,6 +195,7 @@
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <connections>
+                        <outlet property="restartbutton" destination="AQ1-3H-Ykb" id="D6D-lU-xR2"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                         <outlet property="searchBar" destination="EcL-m1-Wdb" id="Zbg-TL-ZMv"/>
                         <outlet property="table" destination="6ls-MW-taa" id="gkC-X3-rra"/>

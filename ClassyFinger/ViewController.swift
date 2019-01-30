@@ -31,8 +31,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
     var myscene = SCNScene()
     var spintop = SCNNode()
     var arrowNode = SCNNode()
+
     
     
+    @IBOutlet weak var restartbutton: UIButton!
     @IBOutlet weak var table: UITableView!
     @IBAction func rightTouchmove(_ sender: UITapGestureRecognizer) {
         sceneViewLocation.moveSceneHeadingClockwise()
@@ -61,7 +63,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         sceneView.addSubview(sceneViewLocation)
         addpointOfIntrest()
         selectednodestoPresent()
+        
     }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -74,14 +78,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         myscene = SCNScene(named: "art.scnassets/SceneKit Scene 2.scn")!
         spintop = myscene.rootNode.childNode(withName: "cone", recursively: true)!
         arrowNode = myscene.rootNode.childNode(withName: "arrows", recursively: true)!
+
     }
     //--------------------------------------------------------------------------//
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         sceneViewLocation.pause()
-        
     }
+    
     
 
     //MARK: - Add pictures and Objects Function
@@ -155,7 +160,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         if let mytextspots = searchSpots.first(where: {$0.label.lowercased() == searchBar.text!.lowercased()}){
             addpicobject(spots: mytextspots)
             addlabelAbove(spots: mytextspots)
-            
         } else {
             print("no Picture was found")
         }
@@ -208,8 +212,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         guard let currentposition = sceneViewLocation.currentLocation() else {
             return print("Current location not found")
         }
+        
         let chicoState = Spots(laditude: 39.7297, longitude: -121.8447, altitude: 30, image: nil, name: "Chico State", elevation: 65, intrest: intrestPoints.ChicoState.rawValue)
-        if comparedistance(spot1: chicoState.cllocation, spot2: currentposition) < 24000 {
+        if comparedistance(spot1: chicoState.cllocation, spot2: currentposition) < 2400 {
             pointsofIntrest.append(chicoState)
             print("With in chico state")
         }
@@ -220,7 +225,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         if comparedistance(spot1: home.cllocation, spot2: currentposition) < 2000 {
             pointsofIntrest.append(home)}
         let balboaintrest = Spots(laditude: 32.7314, longitude: -117.1504, altitude: 15, mynode: spintop, name: "Balboa Park", elevation: 89, intrest: intrestPoints.BalboaMuseums.rawValue)
-        if comparedistance(spot1: balboaintrest.cllocation, spot2: currentposition) < 24000 {
+        if comparedistance(spot1: balboaintrest.cllocation, spot2: currentposition) < 2400 {
             pointsofIntrest.append(balboaintrest)}
     }
     
