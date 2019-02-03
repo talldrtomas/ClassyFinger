@@ -31,9 +31,57 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
     var myscene = SCNScene()
     var spintop = SCNNode()
     var arrowNode = SCNNode()
+    var tutorialstarted = 0
 
     
     
+    @IBAction func tutorialbutton(_ sender: UIButton) {
+        tutorialstarted = 0
+        tutorial.isHidden = false
+        tutorial.alpha = 1
+        topLabeltutorial.isHidden = true
+        lowerLabelTutorial.isHidden = false
+        
+    }
+    @IBAction func tutorialTouchnext(_ sender: UITapGestureRecognizer) {
+        tutorialstarted += 1
+        let instruction1 = """
+        Press the Search Bar and search for a building
+        or you dont have too I don't pour your cereal
+        """
+        let instruction2 = "To start over, press the Search Bar"
+        let instruction3 =
+            """
+                Look left or right to search for building,
+                or do what you want, its a free country 😒
+                """
+        
+        switch tutorialstarted {
+        case 0:
+            lowerLabelTutorial.isHidden = false
+            topLabeltutorial.isHidden = true
+        case 1:
+            lowerLabelTutorial.isHidden = true
+            topLabeltutorial.isHidden = false
+            topLabeltutorial.text = instruction1
+        case 2:
+            topLabeltutorial.text = instruction2
+            topLabeltutorial.isHidden = false
+            lowerLabelTutorial.isHidden = true
+        case 3:
+            topLabeltutorial.text = instruction3
+        case 4:
+            tutorial.isHidden = true
+        default:
+            tutorialstarted = 0
+        }
+        
+    }
+    
+    
+    @IBOutlet weak var tutorial: UIView!
+    @IBOutlet weak var lowerLabelTutorial: UILabel!
+    @IBOutlet weak var topLabeltutorial: UILabel!
     @IBOutlet weak var restartbutton: UIButton!
     @IBOutlet weak var table: UITableView!
     @IBAction func rightTouchmove(_ sender: UITapGestureRecognizer) {
@@ -52,6 +100,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         sceneViewLocation.resetSceneHeading()
         addpointOfIntrest()
         selectednodestoPresent()
+        restartbutton.isHidden = true
+        restartbutton.isEnabled = false
+        
     }
     
     @IBOutlet weak var searchBar: UISearchBar!
