@@ -113,7 +113,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         super.viewDidLoad()
         sceneView.addSubview(sceneViewLocation)
         addpointOfIntrest()
-        selectednodestoPresent()
+        selectednodestoPresent()        
         
     }
     
@@ -137,6 +137,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
         super.viewWillDisappear(animated)
         sceneViewLocation.pause()
     }
+    
     
     
 
@@ -340,99 +341,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UISearchBarDelegate, 
             print("no Picture was found")
         }
     }
-    
-   /* func oconnellBuilding(intrest: intrestPoints){
-    //add O'connell classes
-        let elevation = 59.13
-        let secondFloor = 10.0
-        let thirdFloor = 20.0
-        let fourthFloor = 30.0
-        let OC124 = Spots(laditude: 39.7276, longitude: -121.8474, altitude: 0, mynode: spintop, name: "OCNL 124", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC124)
-        let OC130 = Spots(laditude: 39.7275, longitude: -121.8476, altitude: 0, mynode: spintop, name: "OCNL 130", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC130)
-        let OC131 = Spots(laditude: 39.7275, longitude: -121.8476, altitude: 0, mynode: spintop, name: "OCNL 131", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC131)
-        let OC123 = Spots(laditude: 39.7277, longitude: -121.8475, altitude: 0, mynode: spintop, name: "OCNL 123", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC123)
-        let OC121 = Spots(laditude: 39.7278, longitude: -121.8476, altitude: 0, mynode: spintop, name: "OCNL 121", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC121)
-        let OC133 = Spots(laditude: 39.7277, longitude: -121.8477, altitude: 0, mynode: spintop, name: "OCNL 133", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC133)
-        let OC119 = Spots(laditude: 39.7277, longitude: -121.8477, altitude: 0, mynode: spintop, name: "OCNL 119", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC119)
-        let OC120 = Spots(laditude: 39.7278, longitude: -121.8476, altitude: 0, mynode: spintop, name: "OCNL 120", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC120)
-        let OC136 = Spots(laditude: 39.7277, longitude: -121.8478, altitude: 0, mynode: spintop, name: "OCNL 136", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC136)
-        
-        //Second Floor
-        let OC254 = Spots(laditude: 39.7277, longitude: -121.8478, altitude: secondFloor, mynode: spintop, name: "OCNL 254", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC254)
-        let OC255 = Spots(laditude: 39.7276, longitude: -121.8477, altitude: secondFloor, mynode: spintop, name: "OCNL 255", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC255)
-        let OC249 = Spots(laditude: 39.7276, longitude: -121.8476, altitude: secondFloor, mynode: spintop, name: "OCNL 249", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC249)
-        let OC244 = Spots(laditude: 39.7275, longitude: -121.8477, altitude: secondFloor, mynode: spintop, name: "OCNL 244", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC244)
-        let OC251 = Spots(laditude: 39.7276, longitude: -121.8477, altitude: secondFloor, mynode: spintop, name: "OCNL 251", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC251)
-        let OC246 = Spots(laditude: 39.7276, longitude: -121.846, altitude: secondFloor, mynode: spintop, name: "OCNL 246", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC246)
-        let OC247 = Spots(laditude: 39.7277, longitude: -121.845, altitude: secondFloor, mynode: spintop, name: "OCNL 247", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC247)
-        let OC242 = Spots(laditude: 39.7275, longitude: -121.844, altitude: secondFloor, mynode: spintop, name: "OCNL 242", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC242)
-        let OC241 = Spots(laditude: 39.7275, longitude: -121.844, altitude: secondFloor, mynode: spintop, name: "OCNL 241", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC241)
-        let OC239 = Spots(laditude: 39.7274, longitude: -121.844, altitude: secondFloor, mynode: spintop, name: "OCNL 239", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC239)
-        let OC237 = Spots(laditude: 39.7275, longitude: -121.843, altitude: secondFloor, mynode: spintop, name: "OCNL 237", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC237)
-        //missing one class
-        
-        //third floor
-        let OC334 = Spots(laditude: 39.7275, longitude: -121.844, altitude: thirdFloor, mynode: spintop, name: "OCNL 334", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC334)
-        let OC337 = Spots(laditude: 39.7275, longitude: -121.844, altitude: thirdFloor, mynode: spintop, name: "OCNL 334", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC337)
-        let OC338 = Spots(laditude: 39.7274, longitude: -121.844, altitude: thirdFloor, mynode: spintop, name: "OCNL 338", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC338)
-        let OC339 = Spots(laditude: 39.7275, longitude: -121.845, altitude: thirdFloor, mynode: spintop, name: "OCNL 339", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC339)
-        let OC344 = Spots(laditude: 39.7276, longitude: -121.846, altitude: thirdFloor, mynode: spintop, name: "OCNL 344", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC344)
-        let OC340 = Spots(laditude: 39.7276, longitude: -121.845, altitude: thirdFloor, mynode: spintop, name: "OCNL 340", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC340)
-        let OC342 = Spots(laditude: 39.7276, longitude: -121.845, altitude: thirdFloor, mynode: spintop, name: "OCNL 342", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC342)
-        let OC345 = Spots(laditude: 39.7277, longitude: -121.847, altitude: thirdFloor, mynode: spintop, name: "OCNL 345", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC345)
-        let OC346 = Spots(laditude: 39.7277, longitude: -121.848, altitude: thirdFloor, mynode: spintop, name: "OCNL 346", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC346)
-        let OC343 = Spots(laditude: 39.7277, longitude: -121.846, altitude: thirdFloor, mynode: spintop, name: "OCNL 343", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC343)
-        let OC347 = Spots(laditude: 39.7278, longitude: -121.847, altitude: thirdFloor, mynode: spintop, name: "OCNL 347", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC347)
-        let OC304 = Spots(laditude: 39.7278, longitude: -121.848, altitude: thirdFloor, mynode: spintop, name: "OCNL 304", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC304)
-        let OC312 = Spots(laditude: 39.7278, longitude: -121.848, altitude: thirdFloor, mynode: spintop, name: "OCNL 312", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC312)
-        
-        //Fourth Floor
-        let OC419 = Spots(laditude: 39.7278, longitude: -121.845, altitude: fourthFloor, mynode: spintop, name: "OCNL 419", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC419)
-        let OC438 = Spots(laditude: 39.7276, longitude: -121.846, altitude: fourthFloor, mynode: spintop, name: "OCNL 438", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC438)
-        let OC431 = Spots(laditude: 39.7278, longitude: -121.848, altitude: fourthFloor, mynode: spintop, name: "OCNL 431", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC431)
-        let OC432 = Spots(laditude: 39.7278, longitude: -121.847, altitude: fourthFloor, mynode: spintop, name: "OCNL 432", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC432)
-        let OC436 = Spots(laditude: 39.7278, longitude: -121.847, altitude: fourthFloor, mynode: spintop, name: "OCNL 436", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC436)
-        let OC434 = Spots(laditude: 39.7278, longitude: -121.847, altitude: fourthFloor, mynode: spintop, name: "OCNL 434", elevation: elevation, intrest: intrest.rawValue)
-        destination.append(OC434)
-}*/
     
     func chicononclasse(intrest: intrestPoints){
         let elevation = 59.13

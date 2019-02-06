@@ -7,5 +7,7 @@ target 'ClassyFinger' do
 
   # Pods for ClassyFinger
 pod 'ARCL'
+pod 'Firebase/Core'
+pod 'Firebase/AdMob'
 
 end

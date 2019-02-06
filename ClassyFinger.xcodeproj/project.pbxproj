@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E02273E220960A900B38CAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E02273D220960A900B38CAB /* GoogleService-Info.plist */; };
 		0E85B02721E329E1001C7962 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85B02621E329E0001C7962 /* TableCell.swift */; };
 		0E8C17FB21DAF2570030D140 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8C17FA21DAF2570030D140 /* Locations.swift */; };
 		0EBF164221F23BAC005E4E7F /* InstructionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBF164121F23BAC005E4E7F /* InstructionController.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		0102B44D0F630AEFAA92E7A3 /* Pods-ClassyFinger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassyFinger.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClassyFinger/Pods-ClassyFinger.release.xcconfig"; sourceTree = "<group>"; };
+		0E02273D220960A900B38CAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E85B02621E329E0001C7962 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		0E8C17FA21DAF2570030D140 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Locations.swift; path = "/Users/tomasgh/Library/Mobile Documents/com~apple~CloudDocs/Coding/Swift/ClassyFinger/ClassyFinger/Locations.swift"; sourceTree = "<absolute>"; };
 		0EBF164121F23BAC005E4E7F /* InstructionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				0EDD887E21D7FADD00F07D24 /* AppDelegate.swift */,
 				0EDD888021D7FADD00F07D24 /* art.scnassets */,
 				0EDD888721D7FADF00F07D24 /* Assets.xcassets */,
+				0E02273D220960A900B38CAB /* GoogleService-Info.plist */,
 				0EDD888921D7FADF00F07D24 /* LaunchScreen.storyboard */,
 				0EDD888C21D7FADF00F07D24 /* Info.plist */,
 				0E85B02621E329E0001C7962 /* TableCell.swift */,
@@ -162,6 +165,7 @@
 			files = (
 				0EDD888121D7FADD00F07D24 /* art.scnassets in Resources */,
 				0EDD888B21D7FADF00F07D24 /* LaunchScreen.storyboard in Resources */,
+				0E02273E220960A900B38CAB /* GoogleService-Info.plist in Resources */,
 				0EDD888821D7FADF00F07D24 /* Assets.xcassets in Resources */,
 				0EDD888621D7FADD00F07D24 /* Main.storyboard in Resources */,
 			);
@@ -196,10 +200,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ClassyFinger/Pods-ClassyFinger-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ARCL/ARCL.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ARCL.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

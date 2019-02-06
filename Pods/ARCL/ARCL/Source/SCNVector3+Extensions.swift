@@ -15,3 +15,6 @@ extension SCNVector3 {
         return sqrt(pow(anotherVector.x - x, 2) + pow(anotherVector.z - z, 2))
     }
 }
+
+
+
